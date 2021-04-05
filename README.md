@@ -2,34 +2,35 @@
 
 ### Overview
 
-An app where users can enter and update important medical information
+An app where users are able to connect with their family.  
 
 ### Technologies required (besides typical Hackbright tech stack)
 
-Still researching 
+- Calendar API (still researching to see which one)
+- Dropbox API  (Still researching to see if I'm going to use this)
 
 ### Data
-- User email, password
-- First and Last name 
-- Medications
-- Allergies
-- Emergency Contacts
+- User email, password 
+- Events (event name, location and time if any, type of event)
+- Profile (name, contact information, current location )
 - There will be much more data stored 
 
 ### Roadmap
 
 #### MVP
 
-- Users will be able to create a signup, login and create a profile
-- Users will be able to update records 
-- Users will be able to share medical information 
+- Users will be able to create to signup, login and create a profile 
+- Users will be able to view upcoming events in the calendar
+- Users will be able to share items (pictures, links, documents)
+- Users will be able request event to be added to calendar via Admin
 
 #### 2.0
 
-- List 1–3 2.0 features
+- Make easy UI 
 
 #### 3.0
 
-- List as many nice-to-have features as you'd like
+- React???
+- Video/ Chat feature
 
 ### Notes
