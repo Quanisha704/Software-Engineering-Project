@@ -37,6 +37,23 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email}>'
+
+
+class UserEvent(db.Model):
+    """A user"""
+    
+    __tablename__ = 'userevent'
+
+    userevent_id = db.Column(db.Integer,
+                        autoincrement= True,
+                        primary_key= True)
+    user_id = db.Column(db.Integer,
+                        autoincrement= True) #do I need to autoincrement?
+    event_id = db.Column(db.Integer)
+
+    def __repr__(self):
+        return f'<User userevent_id={self.userevent_id}>'
+    
     
     
     
