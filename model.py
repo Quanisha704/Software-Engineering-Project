@@ -12,15 +12,15 @@ class User(db.Model):
     __tablename__ = 'users'
 
     user_id = db.Column(db.Integer,
-                        autoincrement= True,
-                        primary_key= True)
-    email = db.Column(db.String)
-    password = db.Column(db.String)
+                        autoincrement = True,
+                        primary_key = True)
+    email = db.Column(db.String, nullable = False, unique = True)
+    password = db.Column(db.String, nullable = False) 
     profile_id = db.Column(db.Integer,
-                        autoincrement= True)
+                        autoincrement = True)
     full_name = db.Column(db.String)
     DOB = db.Column(db.DateTime)
-    current_locationd= db.Column(db.String)
+    current_location = db.Column(db.String)
     place_of_birth = db.Column(db.String)
 
     def __repr__(self):
@@ -30,7 +30,8 @@ class User(db.Model):
 class UserEvent(db.Model):
     """A user event"""
     
-    __tablename__ = 'userevents'
+    #Association table between users and events
+    __tablename__ = 'userevents' 
 
     userevent_id = db.Column(db.Integer,
                         autoincrement= True,
