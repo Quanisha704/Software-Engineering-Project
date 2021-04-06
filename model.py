@@ -7,7 +7,6 @@ from datetime import datetime
 db = SQLAlchemy()
 
 
-
 def connect_to_db(flask_app, db_uri='postgresql:///users', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_ECHO'] = echo
@@ -32,7 +31,7 @@ class User(db.Model):
     profile_id = db.Column(db.Integer,
                         autoincrement= True)
     full_name = db.Column(db.String)
-    DOB = db.Column(db.datetime)
+    DOB = db.Column(db.DateTime)
     current_locationd= db.Column(db.String)
     place_of_birth = db.Column(db.String)
 
@@ -43,6 +42,6 @@ class User(db.Model):
     
     
     
-    if __name__ == '__main__':
-        from server import app
-        connect_to_db(app)
+    # if __name__ == '__main__':
+    #     #from server import app
+    #     connect_to_db(app)
