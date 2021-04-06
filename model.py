@@ -68,20 +68,40 @@ class Event(db.Model):
                         primary_key= True)
     event_name = db.Column(db.String)
     event_date = db.Column(db.DateTime)
-   # admin_id = db.Column(db.Integer, 
-    #                     db.ForeignKey('admin.admin_id'))
+    admin_id = db.Column(db.Integer, 
+                         db.ForeignKey('admin.admin_id'))
 
+    admin = db.relationship('Admin', backref='events')
+    
     def __repr__(self):
         return f'<Event event_id={self.event_id} event_name={self.event_name}>'
 
+
+class Admin(db.Model):
+    """A admin"""
+    
+    __tablename__ = 'admin'
+
+    admin_id = db.Column(db.Integer,
+                        primary_key= True)
+    profile_id = db.Column(db.Integer,
+                           db.ForeignKey('users.profile_id'))
+    user_id = db.Column(db.Integer, 
+                        db.ForeignKey('users.user_id')
+    
+    
+   
+    # user = db.relationship('User', backref='admin')
+    # profile = db.relationship('User', backref='admin')
+         
+    # def __repr__(self):
+    #     return f'<Admin admin_id={self.admin_id}>'
+
     
 
     
-    
-    
-    
-    
-    
     # if __name__ == '__main__':
-    #     #from server import app
-    #     connect_to_db(app)
+    # from server import app
+
+
+    connect_to_db(app)
