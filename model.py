@@ -40,20 +40,40 @@ class User(db.Model):
 
 
 class UserEvent(db.Model):
-    """A user"""
+    """A user event"""
     
-    __tablename__ = 'userevent'
+    __tablename__ = 'userevents'
 
     userevent_id = db.Column(db.Integer,
                         autoincrement= True,
                         primary_key= True)
-    user_id = db.Column(db.Integer,
-                        autoincrement= True) #do I need to autoincrement?
-    event_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer, 
+                        db.ForeignKey('users.user_id')) 
+    event_id = db.Column(db.Integer, 
+                         db.ForeignKey('events.event_id'))
+    
+    event = db.relationship('Event', backref='userevents')
+    user = db.relationship('User', backref='userevents')
 
     def __repr__(self):
         return f'<User userevent_id={self.userevent_id}>'
     
+
+class Event(db.Model):
+    """An event"""
+    
+    __tablename__ = 'events'
+
+    event_id = db.Column(db.Integer,
+                        primary_key= True)
+    event_name = db.Column(db.String)
+    event_date = db.Column(db.DateTime)
+   # admin_id = db.Column(db.Integer, 
+    #                     db.ForeignKey('admin.admin_id'))
+
+    def __repr__(self):
+        return f'<Event event_id={self.event_id} event_name={self.event_name}>'
+
     
 
     
