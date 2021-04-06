@@ -55,6 +55,9 @@ class UserEvent(db.Model):
         return f'<User userevent_id={self.userevent_id}>'
     
     
+
+    
+    
     
     
     
