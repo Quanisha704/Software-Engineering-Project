@@ -6,7 +6,7 @@ from datetime import datetime
 db = SQLAlchemy()
 
 
-class User(db.Model):
+class User(db.Model): 
     """A user"""
     
     __tablename__ = 'users'
@@ -16,12 +16,11 @@ class User(db.Model):
                         primary_key = True)
     email = db.Column(db.String, nullable = False, unique = True)
     password = db.Column(db.String, nullable = False) 
-    profile_id = db.Column(db.Integer,
-                        autoincrement = True)
-    full_name = db.Column(db.String)
-    DOB = db.Column(db.DateTime)
+    name = db.Column(db.String, nullable = False)
     current_location = db.Column(db.String)
+    dob = db.Column(db.DateTime)
     place_of_birth = db.Column(db.String)
+    isAdmin = db.Column(db.Boolean)
 
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email}>'
@@ -65,27 +64,9 @@ class Event(db.Model):
     def __repr__(self):
         return f'<Event event_id={self.event_id} event_name={self.event_name}>'
 
-
-class Admin(db.Model):
-    """A admin"""
-    
-    __tablename__ = 'admin'
-
-    admin_id = db.Column(db.Integer,
-                        primary_key= True)
-    profile_id = db.Column(db.Integer,
-                           db.ForeignKey('users.profile_id'))
-    user_id = db.Column(db.Integer, 
-                        db.ForeignKey('users.user_id'))
-    
-    user = db.relationship('User', backref='admin')
-    profile = db.relationship('User', backref='admin')
-
-    def __repr__(self):
-        return f'<Admin admin_id={self.admin_id}>'
     
     
-def connect_to_db(flask_app, db_uri='postgresql:///users', echo=True):
+def connect_to_db(flask_app, db_uri='postgresql:///family', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
     flask_app.config['SQLALCHEMY_ECHO'] = echo
     flask_app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -96,7 +77,7 @@ def connect_to_db(flask_app, db_uri='postgresql:///users', echo=True):
     print('Connected to the db!')
     
     
-    if __name__ == '__main__':
-        from server import app
+if __name__ == '__main__':
+    from server import app
         
-        connect_to_db(app)
+    connect_to_db(app)
