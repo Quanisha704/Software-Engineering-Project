@@ -56,10 +56,7 @@ class Event(db.Model):
                         primary_key= True)
     event_name = db.Column(db.String)
     event_date = db.Column(db.DateTime)
-    admin_id = db.Column(db.Integer, 
-                         db.ForeignKey('admin.admin_id'))
-
-    admin = db.relationship('Admin', backref='events')
+    
     
     def __repr__(self):
         return f'<Event event_id={self.event_id} event_name={self.event_name}>'
