@@ -2,7 +2,7 @@
 
 #from random import choice
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 # "__name__" is a special Python variable for the name of the current module
 # Flask wants to know this to know what any imported things are relative to.
@@ -14,6 +14,9 @@ def homepage():
     """Prompts the user to sign up or sign in"""
     
     return render_template("welcomepage.html")
+  
+  
+
 
 
 if __name__ == '__main__':
