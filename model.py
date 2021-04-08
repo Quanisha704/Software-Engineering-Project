@@ -59,7 +59,7 @@ class Event(db.Model):
     
     
     def __repr__(self):
-        return f'<Event event_id={self.event_id} event_name={self.event_name}>'
+        return f'<Event event_id={self.event_id} event_name={self.event_name}, event_date={self.event_date}>'
 
     
     
