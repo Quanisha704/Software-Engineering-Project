@@ -18,7 +18,7 @@ class User(db.Model):
     password = db.Column(db.String, nullable = False) 
     name = db.Column(db.String, nullable = False)
     current_location = db.Column(db.String)
-    dob = db.Column(db.DateTime)
+    dob = db.Column(db.DateTime,nullable = False)
     place_of_birth = db.Column(db.String)
     isAdmin = db.Column(db.Boolean)
 
