@@ -17,15 +17,15 @@ fake = Faker()
 #Create users from user table by generating fake data
 #and store them in a list so we can use them 
 #to create user accounts and profiles 
-# users = []
+users = []
 
-# for i in range(10):
-#     u = User(email = fake.email(), 
-#             password = fake.password(),
-#             name = fake.name(),
-#             dob = fake.date_of_birth())
-#     users.append(u)
-# print(users)
+for i in range(10):
+    u = User(email = fake.email(), 
+            password = fake.password(),
+            name = fake.name(),
+            dob = fake.date_of_birth())
+    users.append(u)
+print(users)
 
 
 #Create user event from the user event table
@@ -37,12 +37,12 @@ fake = Faker()
     
 
 #Create event from the event table
-events = []
-for i in range(5):
-    e = Event(event_date = fake.date())
-    events.append(e)
-print(events)
+# events = []
+# for i in range(5):
+#     e = Event(event_date = fake.date())
+#     events.append(e)
+# print(events)
 
 
-db.session.add_all(events) 
+db.session.add_all(users) 
 db.session.commit()
