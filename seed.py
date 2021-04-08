@@ -44,5 +44,5 @@ print(users)
 # print(events)
 
 
-db.session.add_all(users) 
+db.session.add_all(users) #how to add all tables at once???
 db.session.commit()
