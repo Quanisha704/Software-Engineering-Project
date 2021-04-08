@@ -29,16 +29,20 @@ fake = Faker()
 
 
 #Create user event from the user event table
-user_event=[]
-for i in range(5):
-    ue = UserEvent(userevent_id = fake.random_number())
-    user_event.append(ue)
-print(user_event)
+# user_event=[]
+# for i in range(5):
+#     ue = UserEvent(userevent_id = fake.random_number()) #generating a random number for right now 
+#     user_event.append(ue)
+# print(user_event)
     
 
 #Create event from the event table
+events = []
+for i in range(5):
+    e = Event(event_date = fake.date())
+    events.append(e)
+print(events)
 
 
-
-db.session.add_all(user_event) 
+db.session.add_all(events) 
 db.session.commit()
