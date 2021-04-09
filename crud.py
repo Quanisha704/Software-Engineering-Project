@@ -36,11 +36,42 @@ def get_user_by_name(name):
     
 
 ################################ CRUD Functions for UserEvent table ############################
+def create_user_event(userevent_id, user, event):
+    """Create and return a new user event"""
+    
+    userevent = UserEvent(userevent_id = userevent_id, user=user, event=event)
+
+
 
 ################################ CRUD Functions for Event table ############################
 
+def create_event(event_name, event_date):
+    """Create and return a new event"""
+    
+    event = Event(event_name=event_name, event_date=event_date)
+    
+    db.session.add(event)
+    db.session.commit()
+    
+    return event
 
+def all_events():
+    """Returns all events"""
+    
+    return Event.query.all()
 
+def get_event_by_id(event_id):
+    """Gets event by id"""
+    
+    return Event.query.get(event_id)
+
+def get_event_by_name(event_name):
+    """Checks if event exists"""
+    
+    return Event.query.filter(Event.event_name==event_name).first()
+ 
+
+   
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
