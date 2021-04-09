@@ -14,7 +14,30 @@ def create_user(email, password, name, dob):
     
     return user
 
+def all_users():
+    """Returns all users"""
+    
+    return User.query.all()
 
+def get_user_by_id(user_id):
+    """Gets user by id"""
+    
+    return User.query.get(user_id)
+
+def get_user_by_email(email):
+    """Checks if user email exists"""
+    
+    return User.query.filter(User.email==email).first()
+
+def get_user_by_name(name):
+    """Checks if user name exists"""
+    
+    return User.query.filter(User.name==name).first()
+    
+
+################################ CRUD Functions for UserEvent table ############################
+
+################################ CRUD Functions for Event table ############################
 
 
 
@@ -28,6 +51,3 @@ if __name__ == '__main__':
 
 
 
-################################ CRUD Functions for UserEvent table ############################
-
-################################ CRUD Functions for Event table ############################
