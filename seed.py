@@ -35,20 +35,27 @@ for i in range(10):
     users.append(db_user)
 
 #Create user event from the user event table
-# user_event=[]
-# for i in range(5):
+user_event=[]
+for i in range(10):
+    userevent_id = fake.random_number() #generating a random number for right now 
+    db_userevent = crud.create_user_event(userevent_id)
+    user_event.append(db_userevent)
+    
 #     ue = UserEvent(userevent_id = fake.random_number()) #generating a random number for right now 
 #     user_event.append(ue)
 # print(user_event)
     
 
 #Create event from the event table
-# events = []
-# for i in range(5):
-#     e = Event(event_date = fake.date())
-#     events.append(e)
-# print(events)
+events = []
+for i in range(5):
+    event_name = fake.name() #checking to see if there is a provider to generate fake event names if not try to see how to possilbly create my own provider 
+    event_date = fake.date()
+
+    db_event = crud.create_event(event_name, event_date)
+    events.append(db_event)
 
 
-db.session.add_all(users) #how to add all tables at once???
-db.session.commit()
+
+# db.session.add_all(users) #how to add all tables at once???
+# db.session.commit()
