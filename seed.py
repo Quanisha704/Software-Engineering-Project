@@ -2,6 +2,7 @@ from model import *
 from faker import Faker
 import os 
 import server
+import crud
 
 #dropping and creating database called family 
 os.system('dropdb family') 
@@ -20,13 +21,18 @@ fake = Faker()
 users = []
 
 for i in range(10):
-    u = User(email = fake.email(), 
-            password = fake.password(),
-            name = fake.name(),
-            dob = fake.date_of_birth())
-    users.append(u)
-print(users)
+    email = fake.email()
+    password = fake.password()
+    name = fake.name()
+    dob = fake.date_of_birth()
+    # u = User(email = fake.email(), 
+    #         password = fake.password(),
+    #         name = fake.name(),
+    #         dob = fake.date_of_birth())
+    #users.append(u)
 
+    db_user = crud.create_user(email, password, name, dob)
+    users.append(db_user)
 
 #Create user event from the user event table
 # user_event=[]
