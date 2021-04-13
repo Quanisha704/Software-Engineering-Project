@@ -42,6 +42,8 @@ def calendar():
     """Displays calendar of events and important info"""
     
     return render_template("calendar.html")
+
+
            
 
 
