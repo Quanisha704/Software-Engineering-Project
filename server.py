@@ -11,11 +11,26 @@ app = Flask(__name__)
 
 @app.route('/')
 def homepage():
-    """Prompts the user to sign up or sign in"""
+    """Homepage for app asks the user to sign in or register"""
     
     return render_template("welcomepage.html")
   
-  
+
+@app.route('/sign_in')
+def login():
+    """Prompts the user to login"""
+    
+    return render_template("sign_in.html")
+
+@app.route('/register')
+def register():
+    """Prompts the user to register"""
+    
+    return render_template("register.html")
+           
+
+
+
 
 
 
