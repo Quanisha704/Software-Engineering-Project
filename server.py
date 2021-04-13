@@ -22,11 +22,26 @@ def login():
     
     return render_template("sign_in.html")
 
+
 @app.route('/register')
 def register():
     """Prompts the user to register"""
     
     return render_template("register.html")
+
+
+@app.route('/profile')
+def profile():
+    """Displays user profile information"""
+    
+    return render_template("profile.html")
+
+
+@app.route('/calendar')
+def calendar():
+    """Displays calendar of events and important info"""
+    
+    return render_template("calendar.html")
            
 
 
