@@ -25,11 +25,8 @@ for i in range(10):
     password = fake.password()
     name = fake.name()
     dob = fake.date_of_birth()
-    # u = User(email = fake.email(), 
-    #         password = fake.password(),
-    #         name = fake.name(),
-    #         dob = fake.date_of_birth())
-    #users.append(u)
+    isAdmin = fake.boolean() #ask about adding isAdmin --received error about 4 positional arguments 
+   
 
     db_user = crud.create_user(email, password, name, dob)
     users.append(db_user)
@@ -41,10 +38,6 @@ for i in range(10):
     db_userevent = crud.create_user_event(userevent_id)
     user_event.append(db_userevent)
     
-#     ue = UserEvent(userevent_id = fake.random_number()) #generating a random number for right now 
-#     user_event.append(ue)
-# print(user_event)
-    
 
 #Create event from the event table
 events = []
@@ -54,8 +47,3 @@ for i in range(5):
 
     db_event = crud.create_event(event_name, event_date)
     events.append(db_event)
-
-
-
-# db.session.add_all(users) #how to add all tables at once???
-# db.session.commit()

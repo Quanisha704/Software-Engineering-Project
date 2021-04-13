@@ -41,10 +41,10 @@ def is_user_admin(isAdmin):
     
 
 ################################ CRUD Functions for UserEvent table ############################
-def create_user_event(userevent_id, user, event):
+def create_user_event(userevent_id):
     """Create and return a new user event"""
     
-    userevent = UserEvent(userevent_id = userevent_id, user=user, event=event)
+    userevent = UserEvent(userevent_id = userevent_id)
 
 
 
