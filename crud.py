@@ -33,6 +33,11 @@ def get_user_by_name(name):
     """Checks if user name exists"""
     
     return User.query.filter(User.name==name).first()
+
+def is_user_admin(isAdmin):
+    """Checks to see if user isAdmin"""
+    
+    return User.query.filter(User.isAdmin == isAdmin).first()   #ask if this is the correct way to query for admin 
     
 
 ################################ CRUD Functions for UserEvent table ############################
@@ -69,6 +74,12 @@ def get_event_by_name(event_name):
     """Checks if event exists"""
     
     return Event.query.filter(Event.event_name==event_name).first()
+
+def get_event_by_date(event_date):
+    """Gets event by date"""
+    
+    return User.query.get(event_date)
+
  
 
    
