@@ -44,7 +44,7 @@ class UserEvent(db.Model):
     user = db.relationship('User', backref='userevents')
 
     def __repr__(self):
-        return f'<User userevent_id={self.userevent_id}>'
+        return f'<User userevent_id={self.userevent_id} user_id={self.user_id} event_id={self.event_id}>'
     
 
 class Event(db.Model):
@@ -54,8 +54,11 @@ class Event(db.Model):
 
     event_id = db.Column(db.Integer,
                         primary_key= True)
-    event_name = db.Column(db.String)
+    event_name = db.Column(db.String, nullable = False)
     event_date = db.Column(db.DateTime)
+    start_at = db.Column(db.Time)
+    end_at = db.Column(db.Time)
+    
     
     
     def __repr__(self):
