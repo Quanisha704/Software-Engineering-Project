@@ -46,7 +46,10 @@ def create_user_event(userevent_id):
     
     userevent = UserEvent(userevent_id = userevent_id)
 
-
+    db.session.add(userevent)
+    db.session.commit()
+    
+    return userevent
 
 ################################ CRUD Functions for Event table ############################
 
