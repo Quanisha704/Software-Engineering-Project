@@ -20,10 +20,10 @@ class User(db.Model):
     current_location = db.Column(db.String)
     dob = db.Column(db.DateTime,nullable = False)
     place_of_birth = db.Column(db.String)
-    isAdmin = db.Column(db.Boolean)
+    isAdmin = db.Column(db.Boolean, nullable = False)
 
     def __repr__(self):
-        return f'<User user_id={self.user_id} email={self.email} password={self.password} name={self.name} dob={self.dob}>'
+        return f'<User user_id={self.user_id} email={self.email} password={self.password} name={self.name} , isAdmin={self.isAdmin}>'
 
 
 class UserEvent(db.Model):
@@ -55,7 +55,7 @@ class Event(db.Model):
     event_id = db.Column(db.Integer,
                         primary_key= True)
     event_name = db.Column(db.String, nullable = False)
-    event_date = db.Column(db.DateTime)
+    event_date = db.Column(db.DateTime, nullable = False)
     start_at = db.Column(db.Time)
     end_at = db.Column(db.Time)
     
