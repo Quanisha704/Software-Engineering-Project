@@ -4,10 +4,10 @@ from faker import Faker
 
 ################################ CRUD Functions for User table ############################
 
-def create_user(email, password, name, dob):
+def create_user(email, password, name, dob, isAdmin):
     """Create and return a new user"""
     
-    user = User(email=email, password = password, name=name, dob = dob)
+    user = User(email=email, password = password, name=name, dob = dob, isAdmin = isAdmin)
     
     db.session.add(user)
     db.session.commit()
@@ -37,7 +37,7 @@ def get_user_by_name(name):
 def is_user_admin(isAdmin):
     """Checks to see if user isAdmin"""
     
-    return User.query.filter(User.isAdmin == isAdmin).first()   #ask if this is the correct way to query for admin 
+    return User.query.filter(User.isAdmin == isAdmin).first()   #ask if this is the correct way to query for admin. There should only be one admin
     
 
 ################################ CRUD Functions for UserEvent table ############################
