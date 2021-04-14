@@ -23,18 +23,20 @@ def homepage():
 def register():
     """Prompts the user to register. If name or email already stored, redirect."""
     
-    if 'name' or 'email' in session:
-        return redirect('/sign_in')
+    # if 'name' or 'email' in session:
+    #     return redirect('/sign_in')
     
     return render_template("register.html")
   
 
 @app.route('/sign_in')
 def login():
-    """Prompts the user to login"""
+    """Prompts the user to sign in"""
     
-    #full_name = request.args.get('full_name')
-    
+    email = request.args.get('email')
+    session['email'] = email 
+    password = request.args.get('password')
+    session['password'] = password     
     
     return render_template("sign_in.html")
 
