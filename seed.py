@@ -1,5 +1,6 @@
 from model import *
 from faker import Faker
+import random
 import os 
 import server
 import crud
