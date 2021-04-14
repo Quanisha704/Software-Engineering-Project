@@ -16,43 +16,48 @@ app.secret_key = "FAMILY"
 def homepage():
     """Homepage for app to ask the user to sign in or register"""
     
-    return render_template("welcomepage.html")
+    return render_template('welcomepage.html')    
+   
 
 
-@app.route('/register')
+@app.route('/register', methods = ['GET', 'POST'])
 def register():
-    """Prompts the user to register. If name or email already stored, redirect."""
+    """Prompts the user to register."""
     
-    # if 'name' or 'email' in session:
+    # if 'name' or 'email' in session:  #if name or email already exist redirect to sign in page
     #     return redirect('/sign_in')
+    # else:
+    #     return render_template('register.html')
     
-    return render_template("register.html")
-  
 
 @app.route('/sign_in')
 def login():
     """Prompts the user to sign in"""
     
-    email = request.args.get('email')
-    session['email'] = email 
-    password = request.args.get('password')
-    session['password'] = password     
+    # email = request.args.get('email')
+    # session['email'] = email 
+    # password = request.args.get('password')
+    # session['password'] = password     
     
     return render_template("sign_in.html")
 
 
-@app.route('/profile')
-def profile():
-    """Displays user profile information"""
-    
-    return render_template("profile.html")
 
 
-@app.route('/calendar')
-def calendar():
-    """Displays calendar of events and important info"""
+# @app.route('/profile')
+# def profile():
+#     """Displays user profile information"""
     
-    return render_template("calendar.html")
+    
+    
+#     return render_template("profile.html")
+
+
+# @app.route('/calendar')
+# def calendar():
+#     """Displays calendar of events and important info"""
+    
+#     return render_template("calendar.html")
 
 
            
