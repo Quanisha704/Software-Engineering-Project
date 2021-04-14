@@ -20,6 +20,9 @@ def homepage():
 def login():
     """Prompts the user to login"""
     
+    #full_name = request.args.get('full_name')
+    
+    
     return render_template("sign_in.html")
 
 
