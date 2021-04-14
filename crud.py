@@ -34,11 +34,19 @@ def get_user_by_name(name):
     
     return User.query.filter(User.name==name).first()
 
-def is_user_admin(isAdmin):
-    """Checks to see if user isAdmin"""
+def get_admin():
+    """Checks to see if user is an admin"""
     
-    return User.query.filter(User.isAdmin == isAdmin).first()   #ask if this is the correct way to query for admin. There should only be one admin
+    return User.query.filters(User.isAdmin == True)
+
+def get_user_id_of_admin(user_id):
+    """Checks the user id for the admin"""
     
+    User.query.filter(User.user_id == user_id)
+    
+    return User.isAdmin
+    #query for user by id#
+    #return user. isAdmin
 
 ################################ CRUD Functions for UserEvent table ############################
 def create_user_event(userevent_id):
