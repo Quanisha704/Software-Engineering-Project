@@ -1,19 +1,32 @@
-"""Greeting Flask app."""
+"""Family Ties Flask app."""
 
-#from random import choice
-
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, redirect, request, session
+from flask_debugtoolbar import DebugToolbarExtension
+from jinja2 import StrictUndefined
 
 # "__name__" is a special Python variable for the name of the current module
 # Flask wants to know this to know what any imported things are relative to.
 app = Flask(__name__)
+app.jinja_env.undefined = StrictUndefined
+app.jinja_env.auto_reload = True
+app.secret_key = "FAMILY"
 
 
 @app.route('/')
 def homepage():
-    """Homepage for app asks the user to sign in or register"""
+    """Homepage for app to ask the user to sign in or register"""
     
     return render_template("welcomepage.html")
+
+
+@app.route('/register')
+def register():
+    """Prompts the user to register. If name or email already stored, redirect."""
+    
+    if 'name' or 'email' in session:
+        return redirect('/sign_in')
+    
+    return render_template("register.html")
   
 
 @app.route('/sign_in')
@@ -24,13 +37,6 @@ def login():
     
     
     return render_template("sign_in.html")
-
-
-@app.route('/register')
-def register():
-    """Prompts the user to register"""
-    
-    return render_template("register.html")
 
 
 @app.route('/profile')
