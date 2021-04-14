@@ -1,15 +1,16 @@
-<!doctype html>
-<html>
-    <head>
-        <title>Family Ties Welcome Page </title>
-    </head>
-    <body>
-        <form>
-            Existing Users Please Sign In
-            <input type="submit" value="Sign In"><br>
-            New User? :
-            <input type="submit" value="Register">
-            
-        </form>
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+
+<form>
+    Existing Users Please Sign In
+    <input type="submit" value="Sign In"><br>
+    New User? :
+    <input type="submit" value="Register">
+    
+</form>
+
+{% endblock %}
+
+
+
