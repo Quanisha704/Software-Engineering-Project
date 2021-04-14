@@ -25,10 +25,10 @@ for i in range(10):
     password = fake.password()
     name = fake.name()
     dob = fake.date_of_birth()
-    isAdmin = fake.boolean() #ask about adding isAdmin --received error about 4 positional arguments 
+    isAdmin = fake.boolean()
    
 
-    db_user = crud.create_user(email, password, name, dob)
+    db_user = crud.create_user(email, password, name, dob, isAdmin)
     users.append(db_user)
 
 #Create user event from the user event table
