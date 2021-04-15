@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 
+{% block title %}Family Ties - Sign In{% endblock %}
+
 {% block content %}
-<form>
-    Email:<input type="text" name="email"><br>
-    Password:<input type="text" name="password"><br>
+Sign In<br>
+<form action='/sign_in' method = 'POST'>
+    <label for="email">Email:</label>
+    <input type="text" name="email" required><br>
+    <label for="password">Password:</label>
+    <input type="password" name="password" minlength="8" required><br>
     <input type="submit" value="Sign In">
 </form>
+
+
+
 {% endblock %}
