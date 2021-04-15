@@ -18,8 +18,8 @@ app.secret_key = "FAMILY"
 
 ################################### LANDING PAGE, REGISTER, SIGN IN, SIGN OUT ##############################
 @app.route('/')
-def homepage():
-    """Homepage for app to ask the user to sign in or register"""
+def welcomepage():
+    """Welcome page for app to ask the user to sign in or register"""
     
     return render_template('welcomepage.html')    
 
@@ -36,16 +36,19 @@ def sign_in_post():
     """Grabs the information from sign form"""
     
     email = request.form.get('email')
-    password = request.form.get('password')
+    session['email'] = email
     
+    password = request.form.get('password')
+    session['password'] = password
     
     # user = crud.get_user_by_email(email)
     # if email == user.email:
     #     session['user_id'] = user_id
     #     session['email'] = email
     #     session['password'] = password
+   
         
-    return render_template('user_profile.html')
+    return render_template('user_profile.html', email=email, password=password)
 
 
 
