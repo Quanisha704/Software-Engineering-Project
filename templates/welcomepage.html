@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
+{% block title %}Family Ties{% endblock %}
+
 {% block content %}
 
 <h2>Welcome To Family Ties</h2>
-<form action = "">
-    Existing User?
-    <input type="submit" value="Sign In"><br>
-    New User?
-    <input type="submit" value="Register">   
-</form>
+
+Existing User?
+<a href = '/sign_in'><button>Sign In</button></a><br>
+
+New User?
+<a href = '/register'><button>Register</button></a>
 
 {% endblock %}
 
