@@ -48,7 +48,13 @@ def sign_in_post():
     #     session['password'] = password
    
         
-    return render_template('user_profile.html', email=email, password=password)
+    return render_template('dashboard.html', email=email, password=password)
+
+@app.route('/sign_out')
+def sign_out():
+    """Prompts the user to sign out"""   
+    
+    return render_template('sign_out.html')
 
 
 
@@ -77,20 +83,20 @@ def sign_in_post():
 #     return redirect('/')
 
 ################################### PROFILE , CALENDAR
-# @app.route('/profile')
-# def profile():
-#     """Displays user profile information"""
+@app.route('/user_profile')
+def profile():
+    """Displays user profile information"""
     
     
     
-#     return render_template("profile.html")
+    return render_template("user_profile.html")
 
 
-# @app.route('/calendar')
-# def calendar():
-#     """Displays calendar of events and important info"""
+@app.route('/calendar')
+def calendar():
+    """Displays calendar of events and important info"""
     
-#     return render_template("calendar.html")
+    return render_template("calendar.html")
 
 
            
