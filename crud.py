@@ -4,10 +4,11 @@ from faker import Faker
 
 ################################ CRUD Functions for User table ############################
 
-def create_user(email, password, name, dob, isAdmin):
+def create_user(email, password, name, current_location, dob, place_of_birth, isAdmin):
     """Create and return a new user"""
     
-    user = User(email=email, password = password, name=name, dob = dob, isAdmin = isAdmin)
+    user = User(email=email, password = password, name=name, current_location = current_location,
+                dob = dob, place_of_birth = place_of_birth, isAdmin = isAdmin )
     
     db.session.add(user)
     db.session.commit()

@@ -23,7 +23,7 @@ class User(db.Model):
     isAdmin = db.Column(db.Boolean, nullable = False)
 
     def __repr__(self):
-        return f'<User user_id={self.user_id} email={self.email} password={self.password} name={self.name} isAdmin={self.isAdmin}>'
+        return f'<User user_id={self.user_id} email={self.email} password={self.password} name={self.name} current_location = {self.current_location } dob = {self.dob} place_of_birth = {self.place_of_birth} isAdmin = {self.isAdmin}>'
 
 
 class UserEvent(db.Model):
