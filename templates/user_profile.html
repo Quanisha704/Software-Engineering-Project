@@ -1,9 +1,18 @@
 {% extends "base.html" %}
 
+{% block title %}Family Ties - Profile{% endblock %}
+
 {% block content %}
-<h2>Profile Page</h2>
+<nav>
+    <div>
+        <h1>Signed in as: {{session['email']}}</h1>
+        <a href="{{ url_for('profile') }}"><i></i>Profile</a>
+        <a href="{{ url_for('calendar') }}"><i></i>Calendar</a>
+        <a href="{{ url_for('sign_out') }}"><i></i>Sign Out</a>
+    </div>
+</nav>
 <div>
-    <p>Your account details are below:</p>
+    <p>Your profile details are below:</p>
     <table>
         <tr>
             <td>Name:</td>
