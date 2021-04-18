@@ -1,7 +1,7 @@
 """Models for Family Ties App"""
 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
+from datetime import date
 
 db = SQLAlchemy()
 
@@ -18,7 +18,7 @@ class User(db.Model):
     password = db.Column(db.String, nullable = False) 
     name = db.Column(db.String, nullable = False)
     current_location = db.Column(db.String)
-    dob = db.Column(db.DateTime,nullable = False)
+    dob = db.Column(db.Date,nullable = False)
     place_of_birth = db.Column(db.String)
     isAdmin = db.Column(db.Boolean, nullable = False)
 
