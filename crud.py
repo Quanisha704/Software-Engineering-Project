@@ -23,7 +23,7 @@ def all_users():
 def get_user_by_id(user_id):
     """Gets user by id"""
     
-    return User.query.get(user_id)
+    return User.query.filter(User.user_id == user_id).one()
 
 def get_user_by_email(email):
     """Checks if user email exists"""
