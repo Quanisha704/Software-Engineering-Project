@@ -5,13 +5,12 @@
 {% block content %}
 <form action='/register' method = 'POST'>
     Name:<input type="text" name="name"><br>
-    Date of Birth:<input type="text" name="dob"><br>
+    Date of Birth:<input type="date" name="dob"><br>
     Place of Birth <input type="text" name="place_of_birth"><br>
     Current Location<input type="text" name="current_location"><br>
     Email:<input type="email" name="email" required><br>
     Create Password:<input type="password" name="password" required><br>
     Admin? <input type="checkbox" name="admin"><br>
-    <!-- Confirm Password:<input type="password" name="password" required><br> -->
     <input type="submit" value="Register">
 </form>
     

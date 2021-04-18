@@ -58,7 +58,7 @@ def sign_in_post():
     
     #if user exists   
     if user:
-        #adds email and password to session
+        #adds users information to session
         session['email'] = email
         session['password'] = password  
         session['user_id'] = user.user_id
@@ -83,49 +83,49 @@ def sign_out():
 
 
 
-# @app.route('/register')
-# def register_form():
-#     """Prompts the user to register for new account."""
+@app.route('/register')
+def register_form():
+    """Prompts the user to register for new account."""
     
-#     return render_template('register.html') 
+    return render_template('register.html') 
 
 
-# @app.route('/register', methods = ['GET','POST'])
-# def register_post():
-#     """Grabs the information from registration form"""
+@app.route('/register', methods = ['GET','POST'])
+def register_post():
+    """Grabs the information from registration form"""
     
-#     #required information for user to input
-#     email = request.form.get('email') 
-#     password = request.form.get('password')
-#     name = request.form.get('name')
-#     current_location = request.form.get('current_location')
-#     dob = request.form.get('dob')
-#     place_of_birth = request.form.get('place_of_birth')
-#     isAdmin = request.args.get('isAdmin')
+    #required information for new user to input
+    email = request.form.get('email') 
+    password = request.form.get('password')
+    name = request.form.get('name')
+    current_location = request.form.get('current_location')
+    dob = request.form.get('dob')
+    place_of_birth = request.form.get('place_of_birth')
+    isAdmin = request.args.get('isAdmin')
     
-#     #adds email, password, name to session
-#     session['email'] = email
-#     session['password'] = password 
-#     session['name'] = name
-#     session['current_location'] = current_location
-#     session['dob'] = dob
-#     session['place_of_birth'] = place_of_birth
-#     session['isAdmin'] = isAdmin
+    #adds new user information to session
+    session['email'] = email
+    session['password'] = password 
+    session['name'] = name
+    session['current_location'] = current_location
+    session['dob'] = dob
+    session['place_of_birth'] = place_of_birth
+    session['isAdmin'] = isAdmin
     
-    # #creates a new user
+    #creates a new user
     #new_user = crud.create_user(email, password, name, current_location, dob, place_of_birth, isAdmin)
     # ERROR - sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) 
     # null value in column "isAdmin" violates not-null constraint
     
-    # #Check to make sure user doesn't already exist before adding to the database
-    # check_email = crud.get_user_by_email(email)
+    #Check to make sure user doesn't already exist before adding to the database
+    check_email = crud.get_user_by_email(email)
     
-    # if check_email:
-    #     flash('A user with that email already exist', 'error')
-    #     return redirect('/register')
-    # else:
-    #     flash('Registration is successful. Please sign in.', 'success')
-    # return redirect('/')
+    if check_email:
+        flash('A user with that email already exist', 'error')
+        return redirect('/register')
+    else:
+        flash('Registration is successful. Please sign in.', 'success')
+    return redirect('/')
          
     
 
@@ -152,11 +152,6 @@ def dashboard():
 def profile():
     """Displays user profile information"""
     
-    # if 'user' in session:
-    #     user = session['user']
-    #     return redirect('/user_profile')
-    # else:
-    #     return redirect('/sign_in')
     return render_template('user_profile.html')
 
 

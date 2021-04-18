@@ -20,7 +20,7 @@ class User(db.Model):
     current_location = db.Column(db.String)
     dob = db.Column(db.Date,nullable = False)
     place_of_birth = db.Column(db.String)
-    isAdmin = db.Column(db.Boolean, nullable = False)
+    isAdmin = db.Column(db.Boolean, nullable = True)
 
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email} password={self.password} name={self.name} current_location = {self.current_location } dob = {self.dob} place_of_birth = {self.place_of_birth} isAdmin = {self.isAdmin}>'
