@@ -26,7 +26,7 @@ for i in range(10):
     password = fake.password()
     name = fake.name()
     current_location = fake.state()
-    dob = fake.date_of_birth()
+    dob = fake.date_of_birth(minimum_age=13)
     place_of_birth = fake.state()
     isAdmin = fake.boolean()
    
