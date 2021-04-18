@@ -5,7 +5,8 @@
 {% block content %}
 <nav>
     <div>
-        <h1>Signed in as: {{session['email']}}</h1>
+        <h1>Signed in as: {{session['name']}}</h1>
+        <a href="{{ url_for('dashboard') }}"><i></i>Dashboard</a>
         <a href="{{ url_for('profile') }}"><i></i>Profile</a>
         <a href="{{ url_for('calendar') }}"><i></i>Calendar</a>
         <a href="{{ url_for('sign_out') }}"><i></i>Sign Out</a>
