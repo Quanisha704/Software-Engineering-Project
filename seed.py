@@ -25,11 +25,13 @@ for i in range(10):
     email = fake.email()
     password = fake.password()
     name = fake.name()
+    current_location = fake.state()
     dob = fake.date_of_birth()
+    place_of_birth = fake.state()
     isAdmin = fake.boolean()
    
 
-    db_user = crud.create_user(email, password, name, dob, isAdmin)
+    db_user = crud.create_user(email, password, name, current_location, dob,  place_of_birth, isAdmin)
     users.append(db_user)
 
 #Create user event from the user event table
