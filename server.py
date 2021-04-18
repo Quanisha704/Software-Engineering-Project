@@ -43,10 +43,6 @@ def sign_in_post():
     email = request.form.get('email') 
     password = request.form.get('password')
     
-    #adds email and password to session
-    session['email'] = email
-    session['password'] = password  
-    
     #searches for the user in the database
     user = crud.get_user_by_email(email) 
     
@@ -61,7 +57,17 @@ def sign_in_post():
         return redirect('/')
     
     #if user exists   
-    if user: 
+    if user:
+        #adds email and password to session
+        session['email'] = email
+        session['password'] = password  
+        session['user_id'] = user.user_id
+        session['name'] = user.name
+        session['current_location'] = user.current_location
+        session['dob'] = user.dob
+        session['place_of_birth'] = user.place_of_birth
+        session['isAdmin'] = user.isAdmin
+        
         flash('Sign in successful!', 'success')
         return redirect('/dashboard')
 
@@ -77,34 +83,34 @@ def sign_out():
 
 
 
-@app.route('/register')
-def register_form():
-    """Prompts the user to register for new account."""
+# @app.route('/register')
+# def register_form():
+#     """Prompts the user to register for new account."""
     
-    return render_template('register.html') 
+#     return render_template('register.html') 
 
 
-@app.route('/register', methods = ['GET','POST'])
-def register_post():
-    """Grabs the information from registration form"""
+# @app.route('/register', methods = ['GET','POST'])
+# def register_post():
+#     """Grabs the information from registration form"""
     
-    #required information for user to input
-    email = request.form.get('email') 
-    password = request.form.get('password')
-    name = request.form.get('name')
-    current_location = request.form.get('current_location')
-    dob = request.form.get('dob')
-    place_of_birth = request.form.get('place_of_birth')
-    isAdmin = request.args.get('isAdmin')
+#     #required information for user to input
+#     email = request.form.get('email') 
+#     password = request.form.get('password')
+#     name = request.form.get('name')
+#     current_location = request.form.get('current_location')
+#     dob = request.form.get('dob')
+#     place_of_birth = request.form.get('place_of_birth')
+#     isAdmin = request.args.get('isAdmin')
     
-    #adds email, password, name to session
-    session['email'] = email
-    session['password'] = password 
-    session['name'] = name
-    session['current_location'] = current_location
-    session['dob'] = dob
-    session['place_of_birth'] = place_of_birth
-    session['isAdmin'] = isAdmin
+#     #adds email, password, name to session
+#     session['email'] = email
+#     session['password'] = password 
+#     session['name'] = name
+#     session['current_location'] = current_location
+#     session['dob'] = dob
+#     session['place_of_birth'] = place_of_birth
+#     session['isAdmin'] = isAdmin
     
     # #creates a new user
     #new_user = crud.create_user(email, password, name, current_location, dob, place_of_birth, isAdmin)
@@ -112,14 +118,14 @@ def register_post():
     # null value in column "isAdmin" violates not-null constraint
     
     # #Check to make sure user doesn't already exist before adding to the database
-    check_email = crud.get_user_by_email(email)
+    # check_email = crud.get_user_by_email(email)
     
-    if check_email:
-        flash('A user with that email already exist', 'error')
-        return redirect('/register')
-    else:
-        flash('Registration is successful. Please sign in.', 'success')
-    return redirect('/')
+    # if check_email:
+    #     flash('A user with that email already exist', 'error')
+    #     return redirect('/register')
+    # else:
+    #     flash('Registration is successful. Please sign in.', 'success')
+    # return redirect('/')
          
     
 
@@ -133,6 +139,11 @@ def register_post():
 def dashboard():
     """Displays the user dashboard"""
     
+    #redirects user if they are not signed in
+    # if not session:
+    #     return redirect('/')
+    # else:
+    #     return redirect('/dashboard')
     return render_template('dashboard.html')
 
 
@@ -141,7 +152,11 @@ def dashboard():
 def profile():
     """Displays user profile information"""
     
-    
+    # if 'user' in session:
+    #     user = session['user']
+    #     return redirect('/user_profile')
+    # else:
+    #     return redirect('/sign_in')
     return render_template('user_profile.html')
 
 
@@ -162,7 +177,8 @@ if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
 
 
-
+#<User user_id=10 email=edward47@garza.com password=7f3AlBE_E% name=Nathan Ramirez 
+# current_location = New Jersey dob = 1964-11-03 00:00:00 place_of_birth = Maine isAdmin = True>]
 
 #sign in route 
  #checks if email and password post exist
