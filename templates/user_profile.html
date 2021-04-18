@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
-{% block title %}Family Ties - Profile{% endblock %}
+{% block title %}Family Ties - {{session['name']}} Profile{% endblock %}
 
 {% block content %}
 <nav>
     <div>
-        <h1>Signed in as: {{session['email']}}</h1>
+        <h1>Signed in as: {{session['name']}}</h1>
+        <a href="{{ url_for('dashboard') }}"><i></i>Dashboard</a>
         <a href="{{ url_for('profile') }}"><i></i>Profile</a>
         <a href="{{ url_for('calendar') }}"><i></i>Calendar</a>
         <a href="{{ url_for('sign_out') }}"><i></i>Sign Out</a>
@@ -15,16 +16,23 @@
     <p>Your profile details are below:</p>
     <table>
         <tr>
-            <td>Name:</td>
-            <td></td>
+            <td>User ID:{{session['user_id']}}</td>
+        </tr>
+        <tr>
+        <tr>
+            <td>Name:{{session['name']}}</td>
         </tr>
         <tr>
             <td>Email:{{session['email']}}</td>
-            <td></td>
         </tr>
         <tr>
-            <td>Password:</td>
-            <td></td>
+            <td>Currently Reside: {{session['current_location']}}</td>
+        </tr>
+        <tr>
+            <td>Place of Birth: {{session['place_of_birth']}}</td>
+        </tr>
+        <tr>
+            <td>Date of Birth: {{session['dob']}}</td>
         </tr>
     </table>
 </div>
