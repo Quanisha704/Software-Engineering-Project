@@ -101,8 +101,10 @@ def register_post():
     current_location = request.form.get('current_location')
     dob = request.form.get('dob')
     place_of_birth = request.form.get('place_of_birth')
-    isAdmin = request.args.get('isAdmin')
+    isAdmin = request.form.get('isAdmin') == 'on'
     
+    print('**********************isAdmin************************')
+    print(isAdmin)
     #adds new user information to session
     session['email'] = email
     session['password'] = password 
@@ -110,22 +112,22 @@ def register_post():
     session['current_location'] = current_location
     session['dob'] = dob
     session['place_of_birth'] = place_of_birth
-    session['isAdmin'] = isAdmin
+    session['isAdmin'] = isAdmin 
     
-    #creates a new user
-    #new_user = crud.create_user(email, password, name, current_location, dob, place_of_birth, isAdmin)
-    # ERROR - sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) 
-    # null value in column "isAdmin" violates not-null constraint
     
     #Check to make sure user doesn't already exist before adding to the database
-    check_email = crud.get_user_by_email(email)
+    verify_user = crud.get_user_by_email(email)
     
-    if check_email:
+    if verify_user:
         flash('A user with that email already exist', 'error')
         return redirect('/register')
     else:
+        #creates a new user
+        crud.create_user(email, password, name, current_location, dob, place_of_birth, isAdmin)
+        # ERROR - sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) 
+        # null value in column "isAdmin" violates not-null constraint
         flash('Registration is successful. Please sign in.', 'success')
-    return redirect('/')
+        return redirect('/')
          
     
 
@@ -157,13 +159,12 @@ def profile():
 
 @app.route('/calendar')
 def calendar():
-    """Displays calendar of events and important info"""
+    """Displays calendar of events"""
     
     return render_template('calendar.html')
 
 
            
-
 
 if __name__ == '__main__':
     # debug=True gives us error messages in the browser and also "reloads"
@@ -171,9 +172,12 @@ if __name__ == '__main__':
     connect_to_db(app)
     app.run(debug=True, host="0.0.0.0")
 
-
+ 
 #<User user_id=10 email=edward47@garza.com password=7f3AlBE_E% name=Nathan Ramirez 
 # current_location = New Jersey dob = 1964-11-03 00:00:00 place_of_birth = Maine isAdmin = True>]
+
+# <User user_id=9 email=lkelly@hotmail.com password=bxu1YWbcv+ name=Kimberly Flores current_location = Montana 
+# dob = 1937-12-14 00:00:00 place_of_birth = North Carolina isAdmin = False>
 
 #sign in route 
  #checks if email and password post exist
