@@ -1,7 +1,7 @@
 """Models for Family Ties App"""
 
 from flask_sqlalchemy import SQLAlchemy
-from datetime import date
+from datetime import *
 
 db = SQLAlchemy()
 
@@ -22,6 +22,7 @@ class User(db.Model):
     place_of_birth = db.Column(db.String)
     isAdmin = db.Column(db.Boolean, nullable = True)
 
+   
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email} password={self.password} name={self.name} current_location = {self.current_location } dob = {self.dob} place_of_birth = {self.place_of_birth} isAdmin = {self.isAdmin}>'
 
@@ -42,6 +43,8 @@ class UserEvent(db.Model):
     
     event = db.relationship('Event', backref='userevents')
     user = db.relationship('User', backref='userevents')
+    
+    
 
     def __repr__(self):
         return f'<User userevent_id={self.userevent_id}>'
@@ -60,6 +63,7 @@ class Event(db.Model):
     end_at = db.Column(db.Time)
     
     
+   
     
     def __repr__(self):
         return f'<Event event_id={self.event_id} event_name={self.event_name}, event_date={self.event_date}>'
@@ -74,10 +78,15 @@ def connect_to_db(flask_app, db_uri='postgresql:///family', echo=True):
     db.app = flask_app
     db.init_app(flask_app)
 
+    
+    
     print('Connected to the db!')
     
     
 if __name__ == '__main__':
     from server import app
-        
+  
     connect_to_db(app)
+    
+    
+    
