@@ -5,6 +5,7 @@ import os
 import server
 import crud
 
+
 #dropping and creating database called family 
 os.system('dropdb family') 
 os.system('createdb family')
