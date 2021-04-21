@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Family Ties - {{session['name']}} Profile{% endblock %}
+{% block title %}{{session['name']}} Profile{% endblock %}
 
 {% block content %}
 <nav>
@@ -35,7 +35,12 @@
             <td>Date of Birth: {{session['dob']}}</td>
         </tr>
         <tr>
-            <td>Admin: {{session['isAdmin']}}</td>
+            <td>{% if session['isAdmin']== True %}
+                    Admin: Yes
+                {% else %}
+                    Admin: No
+                {% endif %}
+            </td>
         </tr>
     </table>
 </div>

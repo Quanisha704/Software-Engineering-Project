@@ -1,9 +1,9 @@
 """Server for Family Ties Flask app."""
 
 from flask import (Flask, request, render_template, redirect, session, flash, url_for)
+from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db
 from sqlalchemy import *
-from flask_debugtoolbar import DebugToolbarExtension
 from jinja2 import StrictUndefined
 import crud
 import os
@@ -103,8 +103,7 @@ def register_post():
     place_of_birth = request.form.get('place_of_birth')
     isAdmin = request.form.get('isAdmin') == 'on'
     
-    print('**********************isAdmin************************')
-    print(isAdmin)
+    
     #adds new user information to session
     session['email'] = email
     session['password'] = password 
@@ -115,17 +114,15 @@ def register_post():
     session['isAdmin'] = isAdmin 
     
     
-    #Check to make sure user doesn't already exist before adding to the database
+    #Check to make sure user doesn't already exist
     verify_user = crud.get_user_by_email(email)
     
     if verify_user:
         flash('A user with that email already exist', 'error')
         return redirect('/register')
     else:
-        #creates a new user
+        #creates a new user and adds the new user to the database
         crud.create_user(email, password, name, current_location, dob, place_of_birth, isAdmin)
-        # ERROR - sqlalchemy.exc.IntegrityError: (psycopg2.errors.NotNullViolation) 
-        # null value in column "isAdmin" violates not-null constraint
         flash('Registration is successful. Please sign in.', 'success')
         return redirect('/')
          
@@ -178,12 +175,3 @@ if __name__ == '__main__':
 
 # <User user_id=9 email=lkelly@hotmail.com password=bxu1YWbcv+ name=Kimberly Flores current_location = Montana 
 # dob = 1937-12-14 00:00:00 place_of_birth = North Carolina isAdmin = False>
-
-#sign in route 
- #checks if email and password post exist
-   # if request.method == 'GET' and 'email' in request.form and 'password' in request.form:
-#  if request.method == 'POST':
-#         if email != 'email' or password != 'password':
-#             flash('Invalid credentials. Please try again')
-#         else:
-#             return redirect(url_for('sign_in'))
