@@ -112,16 +112,18 @@ def register_post():
     session['dob'] = dob
     session['place_of_birth'] = place_of_birth
     session['isAdmin'] = isAdmin 
-    
+    print("*"*20, "about to call crud")
     
     #Check to make sure user doesn't already exist
     verify_user = crud.get_user_by_email(email)
     
     if verify_user:
+        print("*"*20, "about to redirect")
         flash('A user with that email already exist', 'error')
         return redirect('/register')
     else:
         #creates a new user and adds the new user to the database
+        print("*"*20, "sign in fail, about to redirect")
         crud.create_user(email, password, name, current_location, dob, place_of_birth, isAdmin)
         flash('Registration is successful. Please sign in.', 'success')
         return redirect('/')
@@ -170,8 +172,9 @@ if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")
 
  
-#<User user_id=10 email=edward47@garza.com password=7f3AlBE_E% name=Nathan Ramirez 
-# current_location = New Jersey dob = 1964-11-03 00:00:00 place_of_birth = Maine isAdmin = True>]
+# {'email': 'ortegaeric@gmail.com', 'password': '_9Bp@KlG_5', 'name': 'Angela Avila', 'current_location': 'Florida', 
+#  'dob': datetime.date(1921, 11, 9), 'place_of_birth': 'South Carolina', 'isAdmin': False}
 
-# <User user_id=9 email=lkelly@hotmail.com password=bxu1YWbcv+ name=Kimberly Flores current_location = Montana 
-# dob = 1937-12-14 00:00:00 place_of_birth = North Carolina isAdmin = False>
+ # #Testing that the user object 'user id' is not None
+    # def test_user_id(self):
+    #     self.assertIsNotNone(self.user.user_id, 'success')
