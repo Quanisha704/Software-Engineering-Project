@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}{{session['name']}} Profile{% endblock %}
+{% block title %}{{session['fname']}} Profile{% endblock %}
 
 {% block content %}
 <nav>
     <div>
-        <h1>Signed in as: {{session['name']}}</h1>
+        <h1>Signed in as: {{session['fname']}}</h1>
         <a href="{{ url_for('dashboard') }}"><i></i>Dashboard</a>
         <a href="{{ url_for('profile') }}"><i></i>Profile</a>
         <a href="{{ url_for('calendar') }}"><i></i>Calendar</a>
@@ -20,7 +20,13 @@
         </tr>
         <tr>
         <tr>
-            <td>Name:{{session['name']}}</td>
+            <td>First Name:{{session['fname']}}</td>
+        </tr>
+        <tr>
+            <td>Last Name:{{session['lname']}}</td>
+        </tr>
+        <tr>
+            <td>Occupation:{{session['job']}}</td>
         </tr>
         <tr>
             <td>Email:{{session['email']}}</td>
