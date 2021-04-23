@@ -32,7 +32,7 @@ class FlaskTestsBasic(TestCase):
         """Test sign in page."""
 
         result = self.client.post("/sign_in",
-                                  data={"email": "harriskelly@blackwell.com", "password": "2S(0BrgTgq"})
+                                  data={"email": "ilucero@soto.org", "password": "J&8YDTtDtk"})
         self.assertIn(b"Sign in successful!", result.data)
 
 
@@ -41,6 +41,3 @@ if __name__ == "__main__":
 
     unittest.main()
 
-
-# {'email': 'harriskelly@blackwell.com', 'password': '2S(0BrgTgq', 'name': 'Kara Ortiz', 
-#  'current_location': 'West Virginia', 'dob': datetime.date(1959, 4, 28), 'place_of_birth': 'Indiana', 'isAdmin': True}
