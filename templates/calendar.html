@@ -3,21 +3,21 @@
 {% block title %}Family Ties - Calendar{% endblock %}
 
 {% block head %}
-<link rel= "stylesheet" href = "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js"></script>
+<!-- <link rel= "stylesheet" href = "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js"></script> -->
 {% endblock %}
 
 {% block content %}
 <nav>
     <div>
-        <h1>Signed in as: {{session['name']}}</h1>
+        <h1>Signed in as: {{session['fname']}}</h1>
         <a href="{{ url_for('dashboard') }}"><i></i>Dashboard</a>
         <a href="{{ url_for('profile') }}"><i></i>Profile</a>
         <a href="{{ url_for('calendar') }}"><i></i>Calendar</a>
         <a href="{{ url_for('sign_out') }}"><i></i>Sign Out</a>
     </div>
 </nav>
-<div id="calendar"></div>
+<!-- <div id="calendar"></div>
 <script>
     let calendarElem = document.getElementById('calendar');
 
@@ -31,6 +31,19 @@
     }
   });
     calendar.render();
-</script>
+</script> -->
+
+<ul>
+  {% for e in event %}
+    <li>
+        {{ e.event_name }}
+        {{ e.event_date }}
+        {{ e.event_location }}
+        {{ e.start_at }}
+        {{ e.end_at }}
+    </li>
+  {% endfor %}
+</ul>
+  
 
 {% endblock %}
