@@ -15,16 +15,18 @@ class User(db.Model):
                         autoincrement = True,
                         primary_key = True)
     email = db.Column(db.String, nullable = False, unique = True)
-    password = db.Column(db.String, nullable = False) 
-    name = db.Column(db.String, nullable = False)
+    password = db.Column(db.String, nullable = False)
+    fname = db.Column(db.String, nullable = False) 
+    lname = db.Column(db.String, nullable = False)
+    job = db.Column(db.String)
     current_location = db.Column(db.String)
-    dob = db.Column(db.Date,nullable = False)
     place_of_birth = db.Column(db.String)
-    isAdmin = db.Column(db.Boolean, nullable = True)
+    dob = db.Column(db.Date)
+    isAdmin = db.Column(db.Boolean, nullable = False)
 
    
     def __repr__(self):
-        return f'<User user_id={self.user_id} email={self.email} password={self.password} name={self.name} current_location = {self.current_location } dob = {self.dob} place_of_birth = {self.place_of_birth} isAdmin = {self.isAdmin}>'
+        return f'<User user_id={self.user_id} email={self.email} password={self.password} fname={self.fname} lname={self.lname} job={self.job}  current_location = {self.current_location } place_of_birth = {self.place_of_birth} dob = {self.dob} isAdmin = {self.isAdmin}>'
 
 
 class UserEvent(db.Model):
@@ -59,6 +61,7 @@ class Event(db.Model):
                         primary_key= True)
     event_name = db.Column(db.String, nullable = False)
     event_date = db.Column(db.DateTime, nullable = False)
+    event_location = db.Column(db.String)
     start_at = db.Column(db.Time)
     end_at = db.Column(db.Time)
     
@@ -66,7 +69,7 @@ class Event(db.Model):
    
     
     def __repr__(self):
-        return f'<Event event_id={self.event_id} event_name={self.event_name}, event_date={self.event_date}>'
+        return f'<Event event_id={self.event_id} event_name={self.event_name} event_date={self.event_date} event_location={self.event_location} start_at={self.start_at} end_at={self.end_at}>'
 
     
     
