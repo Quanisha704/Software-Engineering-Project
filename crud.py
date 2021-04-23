@@ -4,11 +4,11 @@ from faker import Faker
 
 ################################ CRUD Functions for User table ############################
 
-def create_user(email, password, name, current_location, dob, place_of_birth, isAdmin):
+def create_user(email, password, fname, lname, job, current_location, place_of_birth, dob, isAdmin):
     """Create and return a new user"""
     
-    user = User(email=email, password = password, name=name, current_location = current_location,
-                dob = dob, place_of_birth = place_of_birth, isAdmin = isAdmin )
+    user = User(email=email, password = password, fname=fname, lname=lname, job=job, 
+                current_location = current_location, place_of_birth = place_of_birth, dob = dob, isAdmin = isAdmin )
     
     db.session.add(user)
     db.session.commit()
@@ -30,10 +30,10 @@ def get_user_by_email(email):
     
     return User.query.filter(User.email==email).first()
 
-def get_user_by_name(name):
+def get_user_by_fname(fname):
     """Checks if user name exists"""
     
-    return User.query.filter(User.name==name).first()
+    return User.query.filter(User.fname==fname and User.lname==lname).first()
 
 def get_is_admin():  
     """Checks to see if user is an admin"""
@@ -62,10 +62,10 @@ def create_user_event(userevent_id):
 
 ################################ CRUD Functions for Event table ############################
 
-def create_event(event_name, event_date):
+def create_event(event_name, event_date, event_location, start_at, end_at):
     """Create and return a new event"""
     
-    event = Event(event_name=event_name, event_date=event_date)
+    event = Event(event_name=event_name, event_date=event_date, event_location=event_location, start_at=start_at, end_at=end_at)
     
     db.session.add(event)
     db.session.commit()
