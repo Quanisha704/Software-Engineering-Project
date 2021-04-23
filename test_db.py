@@ -25,8 +25,8 @@ class TestUser(unittest.TestCase):
         connect_to_db(flask_app, db_uri='postgresql:///testdb', echo=True)
         db.create_all()
         
-        self.user = crud.create_user(email='shelly@time.com', password = 'rY742&1@', name = 'Shelly Green',
-                                     current_location = 'Texas', dob ='2000-12-09', place_of_birth = 'South Carolina', isAdmin =False)
+        self.user = crud.create_user(email='shelly@time.com', password = 'rY742&1@', fname = 'Shelly', lname = 'Harris', job = 'RN',
+                                     current_location = 'Texas',  place_of_birth = 'South Carolina', dob ='2000-12-09', isAdmin =False)
        
        
     #Testing to make sure that the user object has been created is an instance of the User class
@@ -42,8 +42,8 @@ class TestUser(unittest.TestCase):
         self.assertEqual('rY742&1@', self.user.password)
    
     #Testing that the user object 'name' has been constructed properly 
-    def test_name(self):
-        self.assertEqual('Shelly Green', self.user.name)
+    def test_fname(self):
+        self.assertEqual('Shelly', self.user.fname)
     
     #Testing that the user object 'current location' has been constructed properly 
     def test_current_location(self):
