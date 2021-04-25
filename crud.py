@@ -30,10 +30,6 @@ def get_user_by_email(email):
     
     return User.query.filter(User.email==email).first()
 
-def get_user_by_fname(fname):
-    """Checks if user name exists"""
-    
-    return User.query.filter(User.fname==fname and User.lname==lname).first()
 
 def get_is_admin():  
     """Checks to see if user is an admin"""

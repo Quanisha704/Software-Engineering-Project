@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}{{session['fname']}} Dashboard{% endblock %}
+{% block title %}Family Ties - Dashboard{% endblock %}
 	</head>
     {% block content %}
 		<nav>
 			<div>
-				<h1>Welcome, {{session['fname']}} !</h1>
+				<h1>Welcome!</h1>
 				<a href="{{ url_for('dashboard') }}"><i></i>Dashboard</a>
                 <a href="{{ url_for('profile') }}"><i></i>Profile</a>
                 <a href="{{ url_for('calendar') }}"><i></i>Calendar</a>

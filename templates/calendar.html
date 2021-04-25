@@ -3,8 +3,9 @@
 {% block title %}Family Ties - Calendar{% endblock %}
 
 {% block head %}
-<!-- <link rel= "stylesheet" href = "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js"></script> -->
+<link rel= "stylesheet" href = "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js"></script>
+<script src = "events.json"></script>
 {% endblock %}
 
 {% block content %}
@@ -17,21 +18,27 @@
         <a href="{{ url_for('sign_out') }}"><i></i>Sign Out</a>
     </div>
 </nav>
-<!-- <div id="calendar"></div>
+<div id="calendar"></div>
 <script>
-    let calendarElem = document.getElementById('calendar');
+  
+    // let calendarElem = document.getElementById('calendar');
 
-    let calendar = new FullCalendar.Calendar(calendarElem, {
-    initialView: 'dayGridMonth',
-    initialDate: '2021-04-07',
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay'
-    }
-  });
-    calendar.render();
-</script> -->
+    // let calendar = new FullCalendar.Calendar
+    // (calendarElem, 
+    // {
+    //   initialView: 'dayGridMonth',
+    //   initialDate: '2021-04-07',
+    //   headerToolbar: {
+    //   left: 'prev,next today',
+    //   center: 'title',
+    //   right: 'dayGridMonth,timeGridWeek,timeGridDay'
+    // },
+    //   events: 'events.json'
+
+    // });
+
+    // calendar.render();
+</script>
 
 <ul>
   {% for e in event %}
@@ -47,3 +54,6 @@
   
 
 {% endblock %}
+
+
+    

@@ -79,7 +79,6 @@ def sign_out():
     """Signs the current user out and return the user to the landing page"""
     
     del session['email']
-    #session.pop('user', None)
     flash('You have been signed out', 'success')   
     
     return redirect('/')
@@ -142,8 +141,12 @@ def register_post():
 def dashboard():
     """Displays the user dashboard"""
     
+        # email = session['email']
+    # user = crud.get_user_by_email(email)
+    
+    
     if 'email' not in session:
-        flash("You must sign in to access this page!")
+        flash("You must sign in to access the dashboard!")
         return redirect('/sign_in')
     else:
        return render_template('dashboard.html')
@@ -154,8 +157,11 @@ def dashboard():
 def profile():
     """Displays user profile information"""
     
+    # session['email'] = email
+    # user = crud.get_user_by_email(email)
+    
     if 'email' not in session:
-        flash("You must sign in to access this page!")
+        flash("You must sign in to access the profile page!")
         return redirect('/sign_in')
     else:
         return render_template('user_profile.html')
@@ -164,10 +170,13 @@ def profile():
 def calendar():
     """Displays calendar of events"""
     
+       # email = session['email']
+    # user = crud.get_user_by_email(email)
+    
     event = crud.all_events()
     
     if 'email' not in session:
-        flash("You must sign in to access this page!")
+        flash("You must sign in to access the calendar!")
         return redirect('/sign_in')
     else:
         return render_template('calendar.html', event=event)
