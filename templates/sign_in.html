@@ -3,12 +3,33 @@
 {% block title %}Family Ties - Sign In{% endblock %}
 
 {% block content %}
-Sign In<br>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="offset-md-4 col-md-4">
+            <h3>Sign In</h3>
+            <hr>
+            <form action='/sign_in' method = 'POST'>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" class="form-control" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!-- Sign In<br>
 <form action='/sign_in' method = 'POST'>
     <label for="email">Email:</label>
     <input type="email" name="email" required><br>
     <label for="password">Password:</label>
     <input type="password" name="password"  minlength="8" required><br>
     <input type="submit" value="Sign In">
-</form>
+</form> -->
 {% endblock %}
