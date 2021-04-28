@@ -1,12 +1,15 @@
 """Server for Family Ties Flask app."""
 
-from flask import (Flask, request, render_template, redirect, session, flash, url_for)
+from flask import (Flask, request, render_template, redirect, session, flash, url_for, jsonify)
 from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db
 from sqlalchemy import *
 from jinja2 import StrictUndefined
+import cloudinary.uploader
+import json
 import crud
 import os
+
 
 # "__name__" is a special Python variable for the name of the current module
 # Flask wants to know this to know what any imported things are relative to.
@@ -15,7 +18,8 @@ app.jinja_env.undefined = StrictUndefined
 app.jinja_env.auto_reload = True
 app.secret_key = "FAMILY"
 
-
+CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
+CLOUDINARY_KEY_SECRET = os.environ['CLOUDINARY_SECRET']
 
 
 ################################### LANDING PAGE, REGISTER, SIGN IN, SIGN OUT ##############################
@@ -118,18 +122,16 @@ def register_post():
     session['place_of_birth'] = place_of_birth
     session['dob'] = dob
     session['isAdmin'] = isAdmin 
-    print("*"*20, "about to call crud")
+   
     
     #Check to make sure user doesn't already exist
     verify_user = crud.get_user_by_email(email)
     
     if verify_user:
-        print("*"*20, "about to redirect")
         flash('A user with that email already exist', 'error')
         return redirect('/register')
     else:
         #creates a new user and adds the new user to the database
-        print("*"*20, "sign in fail, about to redirect")
         crud.create_user(email, password, fname, lname, job, current_location, place__of_birth, isAdmin)
         flash('Registration is successful. Please sign in.', 'success')
         return redirect('/')
@@ -153,25 +155,50 @@ def dashboard():
 
 
 
-@app.route('/user_profile')
+@app.route('/user_profile', methods = ['GET'])
 def profile():
     """Displays user profile information"""
-    
-    # session['email'] = email
-    # user = crud.get_user_by_email(email)
-    
+   
     if 'email' not in session:
         flash("You must sign in to access the profile page!")
         return redirect('/sign_in')
     else:
-        return render_template('user_profile.html')
+        email = session['email']
+        user = crud.get_user_by_email(email)
+        return render_template('user_profile.html', user = user)
+
+           
+@app.route('/user_profile', methods=['POST'])
+def profile_form_post():
+    """Get the image the user submits and display it on the page"""   
+    
+    
+    my_file = request.files['my-file']
+    
+    result = cloudinary.uploader.upload(my_file,
+                                        api_key=CLOUDINARY_KEY,
+                                        api_secret=CLOUDINARY_KEY_SECRET,
+                                        cloud_name="dhtz9dptw")
+    profile_url = result['secure_url']
+   
+    email = session['email'] 
+    print('**********************')
+    print(email)
+    print('**********************')
+    user = crud.get_user_by_email(email)
+    
+    user.profile_url = profile_url
+    
+    print('**********************')
+    print(user)
+    print('**********************')
+    
+    return render_template("user_profile.html", user = user)
+    
 
 @app.route('/calendar')
 def calendar():
     """Displays calendar of events"""
-    
-       # email = session['email']
-    # user = crud.get_user_by_email(email)
     
     event = crud.all_events()
     
@@ -181,7 +208,11 @@ def calendar():
     else:
         return render_template('calendar.html', event=event)
 
-           
+
+
+
+
+
 
 if __name__ == '__main__':
     
@@ -190,8 +221,6 @@ if __name__ == '__main__':
     connect_to_db(app)
     app.run(debug=True, host="0.0.0.0")
 
-# {'email': 'beasleyshelly@yahoo.com', 'password': 'TTV9zm^ip*', 'fname': 'Darryl', 'lname': 'Jordan', 
-#  'job': 'Primary school teacher', 'current_location': 'Georgia', 'place_of_birth': 'Maryland', 'dob': datetime.date(1919, 11, 26), 'isAdmin': False}
- # #Testing that the user object 'user id' is not None
-    # def test_user_id(self):
-    #     self.assertIsNotNone(self.user.user_id, 'success')
+
+ #{'email': 'ekelly@yahoo.com', 'password': '%)E!OjZU4S', 'fname': 'April', 'lname': 'White', 'job': 'Field trials officer', 'current_location': 'Alaska', 'place_of_birth': 'Oklahoma', 'dob': datetime.date(1962, 9, 27), 'profile_url':
+  #   'https://www.lorempixel.com/440/557', 'isAdmin': False} 
