@@ -16,20 +16,23 @@
     <p>Your profile details are below:</p>
     <table>
         <tr>
+            <td><img src = "{{user.profile_url}}"></td>
+        </tr>
+        <tr>
             <td>User ID:{{session['user_id']}}</td>
         </tr>
         <tr>
         <tr>
-            <td>First Name:{{session['fname']}}</td>
+            <td>First Name: {{session['fname']}}</td>
         </tr>
         <tr>
-            <td>Last Name:{{session['lname']}}</td>
+            <td>Last Name: {{session['lname']}}</td>
         </tr>
         <tr>
-            <td>Occupation:{{session['job']}}</td>
+            <td>Occupation: {{session['job']}}</td>
         </tr>
         <tr>
-            <td>Email:{{session['email']}}</td>
+            <td>Email: {{session['email']}}</td>
         </tr>
         <tr>
             <td>Currently Reside: {{session['current_location']}}</td>
@@ -49,5 +52,13 @@
             </td>
         </tr>
     </table>
+    <form action="/user_profile" method="post" enctype="multipart/form-data">
+        <input type="file" name="my-file">
+        <input type="submit">
+    </form>
 </div>
+
+
+
+
 {% endblock %}
