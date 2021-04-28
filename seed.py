@@ -34,10 +34,11 @@ for i in range(10):
     current_location = fake.state()
     dob = fake.date_of_birth(minimum_age=13)
     place_of_birth = fake.state()
+    profile_url = fake.image_url()
     isAdmin = fake.boolean(chance_of_getting_true=10)
    
 
-    db_user = crud.create_user(email, password, fname, lname, job, current_location, place_of_birth, dob, isAdmin)
+    db_user = crud.create_user(email, password, fname, lname, job, current_location, place_of_birth, dob, profile_url, isAdmin)
     users.append(db_user)
 
 #Create user event from the user event table
