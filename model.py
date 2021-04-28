@@ -1,9 +1,12 @@
 """Models for Family Ties App"""
 
+from flask import Flask 
 from flask_sqlalchemy import SQLAlchemy
 from datetime import *
 
+
 db = SQLAlchemy()
+
 
 
 class User(db.Model): 
@@ -22,11 +25,12 @@ class User(db.Model):
     current_location = db.Column(db.String)
     place_of_birth = db.Column(db.String)
     dob = db.Column(db.Date)
+    profile_url =  db.Column(db.String)
     isAdmin = db.Column(db.Boolean, nullable = False)
-
+    
    
     def __repr__(self):
-        return f'<User user_id={self.user_id} email={self.email} password={self.password} fname={self.fname} lname={self.lname} job={self.job}  current_location = {self.current_location } place_of_birth = {self.place_of_birth} dob = {self.dob} isAdmin = {self.isAdmin}>'
+        return f'<User user_id={self.user_id} email={self.email} password={self.password} fname={self.fname} lname={self.lname} job={self.job}  current_location = {self.current_location } place_of_birth = {self.place_of_birth} dob = {self.dob} profile_url = {self.profile_url} isAdmin = {self.isAdmin}>'
 
 
 class UserEvent(db.Model):
@@ -66,12 +70,11 @@ class Event(db.Model):
     end_at = db.Column(db.Time)
     
     
-   
-    
     def __repr__(self):
         return f'<Event event_id={self.event_id} event_name={self.event_name} event_date={self.event_date} event_location={self.event_location} start_at={self.start_at} end_at={self.end_at}>'
 
     
+
     
 def connect_to_db(flask_app, db_uri='postgresql:///family', echo=True):
     flask_app.config['SQLALCHEMY_DATABASE_URI'] = db_uri
