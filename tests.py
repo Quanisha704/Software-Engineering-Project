@@ -34,7 +34,7 @@ class FlaskTestsBasic(TestCase):
         """Test sign in page."""
 
         result = self.client.post("/sign_in",
-                                  data={"email": "beasleyshelly@yahoo.com", "password": "TTV9zm^ip*"}, follow_redirects=True)
+                                  data={"email": "phillipnunez@gmail.com", "password": "_+c9^On7)u"}, follow_redirects=True)
         self.assertIn(b"Sign in successful!", result.data)
         
     def test_register(self):
@@ -56,7 +56,7 @@ class FlaskTestsLoggedIn(TestCase):
 
         with self.client as c:
             with c.session_transaction() as sess:
-                sess['email'] = "beasleyshelly@yahoo.com"
+                sess['email'] = "phillipnunez@gmail.com"
 
     def test_dashboard_page(self):
         """Test dashboard page."""
@@ -99,7 +99,7 @@ class FlaskTestsDatabase(TestCase):
         db.create_all()
         
         self.user = crud.create_user(email='maryc123@yahoo.com', password = 'K9#n*Hs73', fname = 'Mary', lname = 'Crews', job = 'Night Auditor',
-                                     current_location = 'Wisconsin',  place_of_birth = 'Iowa', dob ='1977-11-03', isAdmin =False)
+                                     current_location = 'Wisconsin',  place_of_birth = 'Iowa', dob ='1977-11-03', profile_url = 'https://doggiecar.com/211/381', isAdmin =False)
 
     def tearDown(self):
         """Do at end of every test."""
