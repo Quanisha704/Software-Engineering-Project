@@ -3,25 +3,53 @@
 {% block title %}Family Ties - Register{% endblock %}
 
 {% block content %}
-<form action='/register' method = 'POST'>
-    First Name:<input type="text" name="fname" required><br>
-    Last Name:<input type="text" name="lname" required><br>
-    Occupation:<input type="text" name="job"><br>
-    Current Location:
-    <select>
-        <option value="">Select a state</option>
-        <option value="AL">Alabama</option>
-        <option value="AK">Alaska</option>
-        <option value="AZ">Arizona</option>
-        <option value="AR">Arkansas</option>
-        <option value="CA">California</option>
-        <option value="CO">Colorado</option>
-        <option value="CT">Connecticut</option>
-        <option value="DE">Delaware</option>
-        <option value="DC">District Of Columbia</option>
-        <option value="FL">Florida</option>
-        <option value="GA">Georgia</option>
-        <option value="HI">Hawaii</option>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="offset-md-4 col-md-4">
+            <h3>Register</h3>
+            <hr>
+            <form action='/register' method = 'POST'>
+                <div class="form-group">
+                    <label for="fname">First Name:</label>
+                    <input type="text" class="form-control" name="fname" required>
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name:</label>
+                    <input type="text" class="form-control" name="lname" required>
+                </div>
+                <div class="form-group">
+                    <label for="job"> Occupation:</label>
+                    <input type="text" class="form-control" name="job" required>
+                </div>
+                <!-- <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Please select your current state:
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                      <button class="dropdown-item" type="button">Alabama</button>
+                      <button class="dropdown-item" type="button">Alaska</button>
+                      <button class="dropdown-item" type="button">Arizona</button>
+                      <button class="dropdown-item" type="button">Arkansas</button>
+                      <button class="dropdown-item" type="button">California</button>
+                      <button class="dropdown-item" type="button">Colorado</button>
+                      <button class="dropdown-item" type="button">Connecticut</button>
+                      <button class="dropdown-item" type="button">Delaware</button>
+                      <button class="dropdown-item" type="button">District Of Columbia</button>
+                      <button class="dropdown-item" type="button">Florida</button>
+                      <button class="dropdown-item" type="button">Georgia</button>
+                      <button class="dropdown-item" type="button">Hawaii</button>
+                    </div>
+                  </div> -->
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!-- 
+       
         <option value="ID">Idaho</option>
         <option value="IL">Illinois</option>
         <option value="IN">Indiana</option>
@@ -123,6 +151,6 @@
     Admin? <input type="checkbox" name="isAdmin"><br>
     <input type="submit" value="Register">
 </form>
-    
+     -->
 
 {% endblock %}
