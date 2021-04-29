@@ -126,6 +126,8 @@ def register_post():
     
     #Check to make sure user doesn't already exist
     verify_user = crud.get_user_by_email(email)
+    print("*"*20, "This is to verify the user", "*"*20)
+    print(verify_user)
     
     if verify_user:
         flash('A user with that email already exist', 'error')
@@ -194,7 +196,58 @@ def profile_form_post():
     print('**********************')
     
     return render_template("user_profile.html", user = user)
+
+
+
+@app.route('/admin', methods = ['GET'])
+def admin_create_event():
+    """Allows the admin to create events"""
     
+    email = session['email'] 
+     
+    verify_isAdmin = crud.get_user_by_email(email)
+    
+    print("*"*20, "This is verify_isAdmin", "*"*20)
+    print(verify_isAdmin)
+    
+    if verify_isAdmin.isAdmin == True:
+        flash("Welcome to your admin page")
+        return redirect('/admin')
+    else:
+        flash("Admin privileges only!")
+        return redirect('/')
+
+
+@app.route('/admin', methods = ['POST'])
+def admin_create_event_post():
+    """Grabs the information from the form that admin uses to create an event"""
+    
+    print("*"*20, "In create event route", "*"*20)
+    event_name = request.form.get('event_name') 
+    event_date = request.form.get('event_date')
+    event_location = request.form.get('event_location')
+    start_at = request.form.get('start_at')
+    end_at = request.form.get('end_at')
+    print(event_name)
+    print(event_date)
+    print(event_location)
+    print(start_at)
+    print(end_at)
+     
+    #Check to make sure event doesn't already exist
+    verify_event = crud.get_event_by_name(event_name)
+    print("*"*20, "This is to verify_event", "*"*20)
+    print(verify_event)
+    
+    if verify_event:
+        flash('An event with that name already exist. Please try again', 'error')
+        return redirect('/admin')
+    else:
+        #creates a new event and adds the new event to the database
+        crud.create_event(event_name, event_date, event_location, start_at, end_at)
+        flash('Event successfully created!', 'success')
+        return redirect('/dashboard')
+         
 
 @app.route('/calendar')
 def calendar():
@@ -223,4 +276,8 @@ if __name__ == '__main__':
 
 
  #{'email': 'ekelly@yahoo.com', 'password': '%)E!OjZU4S', 'fname': 'April', 'lname': 'White', 'job': 'Field trials officer', 'current_location': 'Alaska', 'place_of_birth': 'Oklahoma', 'dob': datetime.date(1962, 9, 27), 'profile_url':
-  #   'https://www.lorempixel.com/440/557', 'isAdmin': False} 
+  #   'https://www.lorempixel.com/440/557', 'isAdmin': False}
+  
+  
+# <User user_id=4 email=phillipnunez@gmail.com password=_+c9^On7)u fname=Anthony lname=Williams 
+# job=Medical secretary  current_location = Michigan place_of_birth = Connecticut dob = 1979-06-21 profile_url = https://placekitten.com/731/381 isAdmin = True> 
