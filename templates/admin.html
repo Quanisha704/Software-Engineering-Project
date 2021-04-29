@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Family Ties - Admin{% endblock %}
+
+{% block content %}
+<h1>This is the admin page</h1>
+
+<form action='/admin' method = 'POST'>
+    Event Name:<input type="text" name ="event_name"><br>
+    Event Date:<input type="text" name ="event_date"><br>
+    Event Location <input type="text" name ="event_location"><br>
+    Starting Time <input type="text" name ="start_at"><br>
+    Ending Time <input type="text" name ="end_at"><br>
+    <input type = "submit">
+</form>
+{% endblock %}
