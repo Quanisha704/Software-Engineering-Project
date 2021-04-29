@@ -19,12 +19,38 @@
         {% block head %}{% endblock %}
     </head>
     <body>
-        {% for msg in get_flashed_messages() %}
-        <p>
-            {{ msg }}
-        </p>
-        {% endfor %}
-     
+        <div>
+            {% with errors = get_flashed_messages(category_filter=["success"]) %}
+                {% if errors %}
+                    {% for message in errors %}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <span>{{ message }}</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                     {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+        <div>
+            {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                {% if errors %}
+                    {% for message in errors %}
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <span>{{ message }}</span>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+       
+        
+        
+
         {% block content %} 
         
         CONTENT GOES HERE 
@@ -33,6 +59,7 @@
 
         {% block after_body %}{% endblock %}
 
+        
         <!-- jQuery script tag from code.jquery.com -->
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
