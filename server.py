@@ -274,10 +274,3 @@ if __name__ == '__main__':
     connect_to_db(app)
     app.run(debug=True, host="0.0.0.0")
 
-
- #{'email': 'ekelly@yahoo.com', 'password': '%)E!OjZU4S', 'fname': 'April', 'lname': 'White', 'job': 'Field trials officer', 'current_location': 'Alaska', 'place_of_birth': 'Oklahoma', 'dob': datetime.date(1962, 9, 27), 'profile_url':
-  #   'https://www.lorempixel.com/440/557', 'isAdmin': False}
-  
-  
-# <User user_id=4 email=phillipnunez@gmail.com password=_+c9^On7)u fname=Anthony lname=Williams 
-# job=Medical secretary  current_location = Michigan place_of_birth = Connecticut dob = 1979-06-21 profile_url = https://placekitten.com/731/381 isAdmin = True> 
