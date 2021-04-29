@@ -203,19 +203,31 @@ def profile_form_post():
 def admin_create_event():
     """Allows the admin to create events"""
     
-    email = session['email'] 
-     
-    verify_isAdmin = crud.get_user_by_email(email)
+    email = session['email']
     
-    print("*"*20, "This is verify_isAdmin", "*"*20)
-    print(verify_isAdmin)
-    
-    if verify_isAdmin.isAdmin == True:
-        flash("Welcome to your admin page")
-        return redirect('/admin')
+    user = crud.get_user_by_email(email)
+    print(user)
+    if user.isAdmin != True or 'email' not in session:
+        flash("Access denied")
+        return render_template('dashboard.html')
     else:
-        flash("Admin privileges only!")
-        return redirect('/')
+        flash("Access granted!")
+        return render_template('admin.html')
+
+    
+    # email = session['email'] 
+     
+    # verify_isAdmin = crud.get_user_by_email(email)
+    
+    # print("*"*20, "This is verify_isAdmin", "*"*20)
+    # print(verify_isAdmin)
+    
+    # if verify_isAdmin.isAdmin == True:
+    #     flash("Welcome to your admin page")
+    #     return redirect('/admin')
+    # else:
+    #     flash("Admin privileges only!")
+    #     return redirect('/')
 
 
 @app.route('/admin', methods = ['POST'])
