@@ -31,17 +31,18 @@ def get_user_by_email(email):
     return User.query.filter(User.email==email).first()
 
 
-def get_is_admin():  
+def get_is_admin(isAdmin):  
     """Checks to see if user is an admin"""
     
-    return User.query.filter(User.isAdmin == True).all()
+    return User.query.filter(User.isAdmin == True).first()
+    
 
 def get_user_id_of_admin(user_id):
     """Checks the user id for the admin"""
     
     User.query.filter(User.user_id == user_id).all()
     
-    return User.user_id
+    return User.fname
     #query for user by id#
     #return user. isAdmin
     
