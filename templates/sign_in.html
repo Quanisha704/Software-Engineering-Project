@@ -2,6 +2,8 @@
 
 {% block title %}Family Ties - Sign In{% endblock %}
 
+
+ 
 {% block content %}
 
 <div class="container-fluid">
@@ -16,7 +18,7 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+                    <input type="password" class="form-control" name="password" placeholder="Password"  minlength="8" required>
                 </div>
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
             </form>
@@ -24,12 +26,4 @@
         </div>
     </div>
 </div>
-<!-- Sign In<br>
-<form action='/sign_in' method = 'POST'>
-    <label for="email">Email:</label>
-    <input type="email" name="email" required><br>
-    <label for="password">Password:</label>
-    <input type="password" name="password"  minlength="8" required><br>
-    <input type="submit" value="Sign In">
-</form> -->
 {% endblock %}
