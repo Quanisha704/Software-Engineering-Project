@@ -145,16 +145,11 @@ def register_post():
 def dashboard():
     """Displays the user dashboard"""
     
-        # email = session['email']
-    # user = crud.get_user_by_email(email)
-    
-    
     if 'email' not in session:
         flash("You must sign in to access the dashboard!")
         return redirect('/sign_in')
     else:
        return render_template('dashboard.html')
-
 
 
 @app.route('/user_profile', methods = ['GET'])
@@ -199,19 +194,15 @@ def profile_form_post():
 
 
 
-@app.route('/admin', methods = ['GET'])
+@app.route('/admin')
 def admin_create_event():
     """Allows the admin to create events"""
     
-    email = session['email']
-    
-    user = crud.get_user_by_email(email)
-    print(user)
-    if user.isAdmin != True or 'email' not in session:
-        flash("Access denied")
-        return render_template('dashboard.html')
+    if ('isAdmin' != True) or ('email' not in session):
+        flash("Access denied", 'error')
+        return redirect('/')
     else:
-        flash("Access granted!")
+        flash("Access granted!", 'success')
         return render_template('admin.html')
 
     
