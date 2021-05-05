@@ -1,19 +1,70 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block title %}Family Ties{% endblock %}
+    <title>Family Ties - Homepage</title>
 
-{% block content %}
-
-<h2>Welcome To Family Ties</h2>
-
-<p>A place to connect with family both near and far!</p><br>
-
-
-Existing User?<a href = '/sign_in'><button>Sign In</button></a><br>
-
-New User?<a href = '/register'><button>Register</button></a>
-
-{% endblock %}
-
-
-
+    <!-- Bootstrap CSS from getbootstrap.com -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+      <!-- My custom styles -->
+      <link rel="stylesheet" href="../static/css/welcomepage.css">
+  </head>
+  <body>
+     <!-------------------------------------------------- ALERT MESSAGES------------------------------------------------->
+     <div>
+      {% with errors = get_flashed_messages(category_filter=["success"]) %}
+          {% if errors %}
+              {% for message in errors %}
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <span>{{ message }}</span>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+               {% endfor %}
+          {% endif %}
+      {% endwith %}
+    </div>
+    <div>
+      {% with errors = get_flashed_messages(category_filter=["error"]) %}
+          {% if errors %}
+              {% for message in errors %}
+                  <div class="full-bg alert alert-danger alert-dismissible fade show" role="alert">
+                      <span>{{ message }}</span>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+              {% endfor %}
+          {% endif %}
+      {% endwith %}
+    </div>
+     <!-------------------------------------------------- NAV BAR---------------------------------------------------------->
+    <div class="homepage">
+      <nav class="navbar navbar-expand-md nav-transparent w-100">
+        <div class="container-fluid">
+          <form class="my-auto">
+            <font class="font-weight-bold" color="white">New User?</font><a href="/sign_in">
+              <button class="btn btn-outline-secondary me-2 btn btn-light btn-md" type="button">Sign In</button></a><br>
+          </form>
+          <form class="my-auto">
+            <font class="font-weight-bold" color="white">Existing User?</font><a href="/register">
+              <button class="btn btn-outline-secondary me-2 btn btn-light btn-md" type="button">Register</button></a><br> 
+          </form>
+        </div>
+      </nav>
+      <!-------------------------------------------------- BACKGROUND IMAGE---------------------------------------------------------->
+      <section class="full-bg container-fluid d-flex justify-content-center align-items-center">
+        <div class="row">
+          <div class="column">
+            <center><p class="display-4 mx-5 text-light">Welcome to Family Ties!</p></center>
+            <p class="display-4 mx-5 text-light">A place to connect with family both near and far</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>
