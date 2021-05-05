@@ -1,0 +1,8 @@
+/* Styling for calendar.html */
+#calendar
+{
+		max-width: 2000px;
+		margin: 50px auto;
+		padding: 0 10px;
+}
+
