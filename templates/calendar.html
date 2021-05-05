@@ -3,8 +3,82 @@
 {% block title %}Family Ties - Calendar{% endblock %}
 
 {% block head %}
-<!-- <link rel= "stylesheet" href = "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css">
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js"></script> -->
+<link rel= "stylesheet" href = "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css">
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+    
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+  const calendarEl = document.getElementById('calendar');
+  const calendar = new FullCalendar.Calendar(calendarEl, {
+    initialView: 'dayGridMonth',
+    initialDate: '2021-05-03',
+    
+    headerToolbar: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+    },
+    editable: false,
+	// eventLimit: true, 
+    // eventRender: function(info) {
+    //   const tooltip = new Tooltip(info.el, {
+    //     title: info.event.extendedProps.description,
+    //     placement: 'top',
+    //     trigger: 'hover',
+    //     container: 'body'
+    //   });
+    // },
+
+    events:[
+    {
+        "start": "2021-04-09",
+        "title": "Zoom call meeting",
+        "url": "https://zoom.us/",
+        "popup":{"title": "this is it", "descri": "this is des",}
+    
+        
+    },
+    {
+        "start": "2021-05-09",
+        "title": "Mother's Day Brunch",
+        "url": ""
+    },
+    {
+    
+        "start": "2021-05-15",
+        "title": "Tiffany's 10th Birthday Party",
+        "url": ""
+    },
+    {
+
+        "start": "2021-05-29",
+        "title": "Josh's Birthday Dinner",
+        "url": ""
+    },
+    {
+        "start": "2021-05-30",
+        "title": "Zoom call meeting",
+        "url": "https://zoom.us/"
+    },
+],
+eventMouseEnter: function(info) {
+            var tis=info.el;
+            var popup=info.event.extendedProps.popup;
+            var tooltip = '<div>' + popup.title + '</div><div>' + popup.descri + '</div></div>';
+            var $tooltip = $(tooltip).appendTo('body');
+
+
+  }});
+calendar.render();
+});
+</script>
+     
+
+
+
 {% endblock %}
 
 {% block content %}
@@ -17,54 +91,7 @@
         <a href="{{ url_for('sign_out') }}"><i></i>Sign Out</a>
     </div>
 </nav>
-<div id='calendar'>
-    <ul>
-      {% for e in event %}
-          <li>
-            Title:{{ e.event_name }}
-            Date:{{ e.event_date }}
-            Location:{{ e.event_location }}
-            Time start:{{ e.start_at }}
-            Time end:{{ e.end_at }}
-          </li>
-          
-    {% endfor %}
-    </ul>
-</div>
-<script>
-    // let calendarElem = document.getElementById('calendar');
+<div id='calendar'></div>
 
-    // let calendar = new FullCalendar.Calendar
-    // (calendarElem, { 
-    //       });
 
-    // calendar.render();
-</script>
 {% endblock %}
-
-
-
-
-
-
-
-<!-- 
-initialView: 'dayGridMonth',
-initialDate: '2021-04-07',
-headerToolbar: {
-left: 'prev,next today',
-center: 'title',
-right: 'dayGridMonth,timeGridWeek,timeGridDay' -->
-
-<!-- 
-<ul>
-  {% for e in event %}
-    <li>
-        {{ e.event_name }}
-        {{ e.event_date }}
-        {{ e.event_location }}
-        {{ e.start_at }}
-        {{ e.end_at }}
-    </li>
-  {% endfor %} 
-</ul> --> -->
