@@ -49,7 +49,7 @@ for i in range(10):
     user_event.append(db_userevent)
     
 # Load events data from JSON file
-with open('data/events.json') as f:
+with open('data/calendar-events.json') as f:
     event_data = json.loads(f.read())
 
 # Create movies, store them in list so we can use them
@@ -57,19 +57,10 @@ with open('data/events.json') as f:
 events_in_db = []
 
 for event in event_data:
-    event_name, event_location = (event['event_name'], event['event_location'])
-    event_date = datetime.strptime(event['event_date'], '%Y-%m-%d')
-    start_at = event['start_at']
-    end_at = event['end_at']
+    title = event['title']
+    start = datetime.strptime(event['start'], '%Y-%m-%d')
+    url = event['url'] 
     
     
-    db_event = crud.create_event(event_name, event_date, event_location, start_at, end_at)
+    db_event = crud.create_event(title, start, url)
     events_in_db.append(db_event)
-# #Create event from the event table
-# events = []
-# for i in range(5):
-#     event_name = fake.name() #checking to see if there is a provider to generate fake event names if not try to see how to possilbly create my own provider 
-#     event_date = fake.date()
-
-    # db_event = crud.create_event(event_name, event_date)
-    # events.append(db_event)

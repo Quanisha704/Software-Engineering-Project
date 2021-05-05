@@ -28,6 +28,7 @@ class User(db.Model):
     profile_url =  db.Column(db.String)
     isAdmin = db.Column(db.Boolean, nullable = False)
     
+
    
     def __repr__(self):
         return f'<User user_id={self.user_id} email={self.email} password={self.password} fname={self.fname} lname={self.lname} job={self.job}  current_location = {self.current_location } place_of_birth = {self.place_of_birth} dob = {self.dob} profile_url = {self.profile_url} isAdmin = {self.isAdmin}>'
@@ -44,8 +45,8 @@ class UserEvent(db.Model):
                         primary_key= True)
     user_id = db.Column(db.Integer, 
                         db.ForeignKey('users.user_id')) 
-    event_id = db.Column(db.Integer, 
-                         db.ForeignKey('events.event_id'))
+    id = db.Column(db.Integer, 
+                         db.ForeignKey('events.id'))
     
     event = db.relationship('Event', backref='userevents')
     user = db.relationship('User', backref='userevents')
@@ -61,17 +62,15 @@ class Event(db.Model):
     
     __tablename__ = 'events'
 
-    event_id = db.Column(db.Integer,
+    id = db.Column(db.Integer,
                         primary_key= True)
-    event_name = db.Column(db.String, nullable = False)
-    event_date = db.Column(db.DateTime, nullable = False)
-    event_location = db.Column(db.String)
-    start_at = db.Column(db.Time)
-    end_at = db.Column(db.Time)
+    title = db.Column(db.String, nullable = False)
+    start = db.Column(db.DateTime, nullable = False)
+    url =  db.Column(db.String)
     
     
     def __repr__(self):
-        return f'<Event event_id={self.event_id} event_name={self.event_name} event_date={self.event_date} event_location={self.event_location} start_at={self.start_at} end_at={self.end_at}>'
+        return f'<Event id={self.id} title={self.title} start={self.start} url={self.url}>'
 
     
 

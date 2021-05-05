@@ -1,7 +1,9 @@
 """Server for Family Ties Flask app."""
 
 from flask import (Flask, request, render_template, redirect, session, flash, url_for, jsonify)
+from flask_socketio import SocketIO, join_room, leave_room, emit
 from flask_debugtoolbar import DebugToolbarExtension
+from flask_session import Session
 from model import connect_to_db
 from sqlalchemy import *
 from jinja2 import StrictUndefined
@@ -17,6 +19,13 @@ app = Flask(__name__)
 app.jinja_env.undefined = StrictUndefined
 app.jinja_env.auto_reload = True
 app.secret_key = "FAMILY"
+app.config['SECRET_KEY'] = 'secret'
+app.config['SESSION_TYPE'] = 'filesystem'
+
+Session(app)
+
+socketio = SocketIO(app, manage_session=False)
+
 
 CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
 CLOUDINARY_KEY_SECRET = os.environ['CLOUDINARY_SECRET']
@@ -37,7 +46,7 @@ def sign_in_form():
     return render_template('sign_in.html')
 
 
-@app.route('/sign_in', methods= ['GET', 'POST'])
+@app.route('/sign_in', methods= ['POST'])
 def sign_in_post():
     """Grabs the information from sign form and checks against the database.
     If email and password match, then user will be sent to personal dashboard. Otherwise 
@@ -96,7 +105,7 @@ def register_form():
     return render_template('register.html') 
 
 
-@app.route('/register', methods = ['GET','POST'])
+@app.route('/register', methods = ['POST'])
 def register_post():
     """Grabs the information from registration form"""
     
@@ -139,7 +148,7 @@ def register_post():
         return redirect('/')
          
 
-################################### DASHBOARD, PROFILE AND CALENDAR PAGES############################
+################################### DASHBOARD, PROFILE, CALENDAR, AND ADMIN PAGES############################
 
 @app.route('/dashboard')
 def dashboard():
@@ -193,32 +202,24 @@ def profile_form_post():
     return render_template("user_profile.html", user = user)
 
 
-
 @app.route('/admin')
 def admin_create_event():
     """Allows the admin to create events"""
     
-    if ('isAdmin' != True) or ('email' not in session):
-        flash("Access denied", 'error')
-        return redirect('/')
-    else:
-        flash("Access granted!", 'success')
-        return render_template('admin.html')
-
-    
-    # email = session['email'] 
+    email = session['email'] 
      
-    # verify_isAdmin = crud.get_user_by_email(email)
+    verify_isAdmin = crud.get_user_by_email(email)
     
-    # print("*"*20, "This is verify_isAdmin", "*"*20)
-    # print(verify_isAdmin)
+    print("*"*20, "This is verify_isAdmin", "*"*20)
+    print(verify_isAdmin)
     
-    # if verify_isAdmin.isAdmin == True:
-    #     flash("Welcome to your admin page")
-    #     return redirect('/admin')
-    # else:
-    #     flash("Admin privileges only!")
-    #     return redirect('/')
+    if verify_isAdmin.isAdmin == True:
+        flash("Welcome to your admin page", 'success')
+        return render_template("admin.html") 
+    else:
+        flash("Admin privileges only!", 'error')
+        return redirect('/')
+   
 
 
 @app.route('/admin', methods = ['POST'])
@@ -247,7 +248,7 @@ def admin_create_event_post():
         return redirect('/admin')
     else:
         #creates a new event and adds the new event to the database
-        crud.create_event(event_name, event_date, event_location, start_at, end_at)
+        crud.create_event(event_name, event_date=None, event_location=None, start_at=None, end_at=None)
         flash('Event successfully created!', 'success')
         return redirect('/dashboard')
          
@@ -256,17 +257,81 @@ def admin_create_event_post():
 def calendar():
     """Displays calendar of events"""
     
-    event = crud.all_events()
     
     if 'email' not in session:
-        flash("You must sign in to access the calendar!")
+        flash("You must sign in to access the calendar!", "error")
         return redirect('/sign_in')
     else:
-        return render_template('calendar.html', event=event)
+        return render_template('calendar.html')
+    
+    
+# @app.route('/calendar_data')
+# def return_calendar_data():
+#     """Displays calendar of events"""
+      
+#     start = request.args.get('start', '')
+    #   print('*'*20, start, '*'*20)
+#     title = request.args.get('title', '')
+#     url = request.args.get('url', '')  
+      
+    #   return jsonify(crud.all_events().to_dict())
+
+    
+    
+    
+   
 
 
 
+@app.route('/chat_signIn')
+def chat_login():
+    """Allows users to sign into chat portal"""
+    
+    if 'email' not in session:
+        flash("You must sign in to access the chat page!", "error")
+        return redirect('/sign_in')
+    else:
+        return render_template('chat_signIn.html')
+    
+@app.route('/chat_room', methods=['GET', 'POST'])
+def chat_room():
+    """Allows users to chat room"""
+    
+    if(request.method=='POST'):
+        #retrieves data from the form 
+        email = request.form['email']
+        room = request.form['room']
+        
+        #Store the data in session
+        session['email'] = email
+        session['room'] = room
+        return render_template('chat_room.html', session = session)
+    else:
+        if(session.get('email') is not None):
+            return render_template('chat_room.html', session = session)
+        else:
+            return redirect(url_for('chat_signIn'))
+        
+@socketio.on('join', namespace='/chat_room')
+def join(message):
+    room = session.get('room')
+    join_room(room)
+    emit('status', {'msg':  session.get('email') + ' has entered the room.'}, room=room)
 
+
+@socketio.on('text', namespace='/chat_room')
+def text(message):
+    room = session.get('room')
+    emit('message', {'msg': session.get('email') + ' : ' + message['msg']}, room=room)
+
+
+@socketio.on('left', namespace='/chat_room')
+def left(message):
+    room = session.get('room')
+    email = session.get('email')
+    leave_room(room)
+    session.clear()
+    emit('status', {'msg': email + ' has left the room.'}, room=room)
 
 
 
@@ -276,4 +341,5 @@ if __name__ == '__main__':
     # our web app if we change the code.
     connect_to_db(app)
     app.run(debug=True, host="0.0.0.0")
+    socketio.run(app)
 

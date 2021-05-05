@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width initial-scale=1 shrink-to-fit=no">
         <title>{% block title %}TITLE GOES HERE {% endblock %}</title>
 
         <!-- Bootstrap CSS from getbootstrap.com -->
@@ -11,7 +11,21 @@
         <!-- My custom styles -->
         <link rel="stylesheet" href="/static/mystyles.css">
 
+         
+        <!-- jQuery script tag from code.jquery.com -->
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+         <!-- Script tags from socket.IO -->
+         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
+         
+        <!-- Script tags from getbootstrap.com -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
         {% block styles %}
+        {% endblock %}
+         
+        {% block scripts %}
         {% endblock %}
         
         
@@ -59,16 +73,9 @@
 
         {% block after_body %}{% endblock %}
 
+       
         
-        <!-- jQuery script tag from code.jquery.com -->
-        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
-        <!-- Script tags from getbootstrap.com -->
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        
-        {% block scripts %}
-        {% endblock %}
+      
     </body>
 </html>
 

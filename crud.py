@@ -36,18 +36,8 @@ def get_is_admin(isAdmin):
     
     return User.query.filter(User.isAdmin == True).first()
     
-
-def get_user_id_of_admin(user_id):
-    """Checks the user id for the admin"""
     
-    User.query.filter(User.user_id == user_id).all()
     
-    return User.fname
-    #query for user by id#
-    #return user. isAdmin
-    
-
-
 ################################ CRUD Functions for UserEvent table ############################
 def create_user_event(userevent_id):
     """Create and return a new user event"""
@@ -61,10 +51,10 @@ def create_user_event(userevent_id):
 
 ################################ CRUD Functions for Event table ############################
 
-def create_event(event_name, event_date, event_location, start_at, end_at):
+def create_event(title, start, url):
     """Create and return a new event"""
     
-    event = Event(event_name=event_name, event_date=event_date, event_location=event_location, start_at=start_at, end_at=end_at)
+    event = Event(title = title, start = start, url = url)
     
     db.session.add(event)
     db.session.commit()
@@ -76,20 +66,20 @@ def all_events():
     
     return Event.query.all()
 
-def get_event_by_id(event_id):
+def get_event_by_id(id):
     """Gets event by id"""
     
-    return Event.query.get(event_id)
+    return Event.query.get(id)
 
-def get_event_by_name(event_name):
+def get_event_by_name(title):
     """Checks if event exists"""
     
-    return Event.query.filter(Event.event_name==event_name).first()
+    return Event.query.filter(Event.title==title).first()
 
-def get_event_by_date(event_date):
+def get_event_by_start_date(start):
     """Gets event by date"""
     
-    return User.query.get(event_date)
+    return User.query.get(start)
 
  
 

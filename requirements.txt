@@ -7,16 +7,9 @@ cloudinary==1.25.0
 Faker==8.0.0
 Faker-Events==0.1.0
 Flask==1.1.2
-Flask-Admin==1.5.8
 Flask-DebugToolbar==0.11.0
 Flask-Login==0.5.0
 Flask-SQLAlchemy==2.4.3
-google-api-core==1.26.3
-google-api-python-client==2.2.0
-google-auth==1.28.1
-google-auth-httplib2==0.1.0
-google-auth-oauthlib==0.4.4
-googleapis-common-protos==1.53.0
 httplib2==0.19.1
 idna==2.9
 itsdangerous==1.1.0
