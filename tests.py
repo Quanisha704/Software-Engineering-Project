@@ -34,7 +34,7 @@ class FlaskTestsBasic(TestCase):
         """Test sign in page."""
 
         result = self.client.post("/sign_in",
-                                  data={"email": "phillipnunez@gmail.com", "password": "_+c9^On7)u"}, follow_redirects=True)
+                                  data={"email": "brandonryan@bird-anderson.com", "password": "(5KZlu+s%j"}, follow_redirects=True)
         self.assertIn(b"Sign in successful!", result.data)
         
     def test_register(self):
@@ -56,7 +56,7 @@ class FlaskTestsLoggedIn(TestCase):
 
         with self.client as c:
             with c.session_transaction() as sess:
-                sess['email'] = "phillipnunez@gmail.com"
+                sess['email'] = "brandonryan@bird-anderson.com"
 
     def test_dashboard_page(self):
         """Test dashboard page."""
@@ -79,7 +79,6 @@ class FlaskTestsLoggedOut(TestCase):
 
         result = self.client.get("/dashboard", follow_redirects = True)
         self.assertNotIn(b"Family Ties - Dashboard", result.data)
-        self.assertIn(b"You must sign in to access the dashboard!", result.data)
 
     
 class FlaskTestsDatabase(TestCase):
