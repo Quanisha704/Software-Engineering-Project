@@ -1,64 +1,123 @@
 {% extends "base.html" %}
 
-{% block title %}{{session['fname']}} Profile{% endblock %}
+{% block title %}Family Ties - {{session['fname']}} Profile{% endblock %}
 
 {% block content %}
-<nav>
-    <div>
-        <h1>Signed in as: {{session['fname']}}</h1>
-        <a href="{{ url_for('dashboard') }}"><i></i>Dashboard</a>
-        <a href="{{ url_for('profile') }}"><i></i>Profile</a>
-        <a href="{{ url_for('calendar') }}"><i></i>Calendar</a>
-        <a href="{{ url_for('sign_out') }}"><i></i>Sign Out</a>
+<!-------------------------------------------------- NAV BAR---------------------------------------------------------->
+<nav class="navbar bg-light">
+    <img  class="img-thumbnail rounded mx-auto d-block" src="static/images/family.png">
+    <div class="navbar-nav container flex-row">
+        <a class="nav-item nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a class="nav-item nav-link" href="{{ url_for('profile') }}">Profile</a>
+        <a class="nav-item nav-link" href="{{ url_for('calendar') }}">Calendar</a>
+        <a class="nav-item nav-link" href="{{ url_for('all_users') }}">My Family</a>
+        <a class="nav-item nav-link" href="{{ url_for('admin_create_event') }}">Admin</a>
+        <a class="nav-item nav-link" href="{{ url_for('sign_out') }}">Sign Out</a>
     </div>
 </nav>
-<div>
-    <p>Your profile details are below:</p>
-    <table>
-        <tr>
-            <td><img src = "{{user.profile_url}}"></td>
-        </tr>
-        <tr>
-            <td>User ID:{{session['user_id']}}</td>
-        </tr>
-        <tr>
-        <tr>
-            <td>First Name: {{session['fname']}}</td>
-        </tr>
-        <tr>
-            <td>Last Name: {{session['lname']}}</td>
-        </tr>
-        <tr>
-            <td>Occupation: {{session['job']}}</td>
-        </tr>
-        <tr>
-            <td>Email: {{session['email']}}</td>
-        </tr>
-        <tr>
-            <td>Currently Reside: {{session['current_location']}}</td>
-        </tr>
-        <tr>
-            <td>Place of Birth: {{session['place_of_birth']}}</td>
-        </tr>
-        <tr>
-            <td>Date of Birth: {{session['dob']}}</td>
-        </tr>
-        <tr>
-            <td>{% if session['isAdmin']== True %}
-                    Admin: Yes
-                {% else %}
-                    Admin: No
-                {% endif %}
-            </td>
-        </tr>
-    </table>
-    <form action="/user_profile" method="post" enctype="multipart/form-data">
-        <input type="file" name="my-file">
-        <input type="submit">
-    </form>
-</div>
+<!-------------------------------------------------- USER PROFILE INFO---------------------------------------------------------->
+<div class="container bootstrap snippets bootdey">
+    <div class="panel-body inf-content">
+        <div class="row">
+            <div class="col-md-4">
+               <image  style = "width:250px" class="avatar avatar-128 bg-light rounded-circle text-white p-2 img-circle img-thumbnail isTooltip" src="https://raw.githubusercontent.com/twbs/icons/main/icons/person-fill.svg">
+            </div>
+            <div class="col-md-6 border border-5">
+                <center><font class="font-weight-bold" color="white">User Details</font> <br></center>
+                <div class="table-responsive">
+                <table class="table table-user-information">
+                    <tbody>
+                        <tr>        
+                            <td>
+                                <font class="font-weight-bold" color="white">User ID</font>                                               
+                            </td>
+                            <td class="text-primary">
+                                {{session['user_id']}}     
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td>
+                                <font class="font-weight-bold" color="white">First Name</font> 
+                            </td>
+                            <td class="text-primary">
+                                {{session['fname']}}     
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <font class="font-weight-bold" color="white">Last Name</font> 
+                            </td>
+                            <td class="text-primary">
+                                {{session['lname']}}  
+                            </td>
+                        </tr>
+    
+                        <tr>        
+                            <td>
+                                <font class="font-weight-bold" color="white">Occupation</font> 
+                            </td>
+                            <td class="text-primary">
+                                {{session['job']}} 
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <font class="font-weight-bold" color="white">Email</font> 
+                            </td>
+                            <td class="text-primary">
+                                {{session['email']}}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <font class="font-weight-bold" color="white">Currently Reside</font> 
 
+                            </td>       
+                            <td class="text-primary">
+                                {{session['current_location']}}  
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <font class="font-weight-bold" color="white">Place of Birth
 
-
-
+                            </td>
+                            <td class="text-primary">
+                                {{session['place_of_birth']}}
+                            </td>
+                        </tr>
+                        <tr>        
+                            <td>
+                                <font class="font-weight-bold" color="white">Date of Birth</font> 
+                            </td>
+                            <td class="text-primary">
+                                {{session['dob']}}
+                            </td>
+                        </tr>
+                        <tr>{% if session['isAdmin']== True %}        
+                            <td>
+                                <font class="font-weight-bold" color="white">Admin</font>  
+                            </td>
+                            <td class="text-primary">
+                               Yes
+                            </td>
+                            {% else %}
+                            <td>
+                                <font class="font-weight-bold" color="white">Admin</font> 
+                            </td>
+                            <td class="text-primary">
+                               No
+                            </td>  
+                        </tr>{% endif %}                                     
+                    </tbody>
+                </table>
+                <center><form action="/user_profile" method='POST' enctype="multipart/form-data">
+                    <input type="file" name="my-file">
+                    <input type="submit">
+                </form></center>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>                                        
 {% endblock %}

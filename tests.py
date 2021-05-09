@@ -27,7 +27,7 @@ class FlaskTestsBasic(TestCase):
         """Test landing page."""
 
         result = self.client.get("/")
-        self.assertIn(b"Welcome To Family Ties", result.data)
+        self.assertIn(b"Welcome to Family Ties! A place to connect with family both near and far", result.data)
         self.assertEqual(result.status_code, 200)
     
     def test_signIn(self):

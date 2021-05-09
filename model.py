@@ -65,8 +65,12 @@ class Event(db.Model):
     id = db.Column(db.Integer,
                         primary_key= True)
     title = db.Column(db.String, nullable = False)
-    start = db.Column(db.DateTime, nullable = False)
+    start = db.Column(db.DateTime)
     url =  db.Column(db.String)
+    
+    def to_dict(self):
+        return{'id': self.id,'title': self.title, 'start': self.start ,'url': self.url}
+
     
     
     def __repr__(self):

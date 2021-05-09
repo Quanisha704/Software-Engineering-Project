@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         
       <!-- My custom styles -->
-      <link rel="stylesheet" href="../static/css/welcomepage.css">
+      <link rel="stylesheet" href="../static/css/welcome.css">
   </head>
   <body>
      <!-------------------------------------------------- ALERT MESSAGES------------------------------------------------->
@@ -42,7 +42,7 @@
           {% endif %}
       {% endwith %}
     </div>
-     <!-------------------------------------------------- NAV BAR---------------------------------------------------------->
+    <!-------------------------------------------------- NAV BAR---------------------------------------------------------->
     <div class="homepage">
       <nav class="navbar navbar-expand-md nav-transparent w-100">
         <div class="container-fluid">
@@ -58,13 +58,24 @@
       </nav>
       <!-------------------------------------------------- BACKGROUND IMAGE---------------------------------------------------------->
       <section class="full-bg container-fluid d-flex justify-content-center align-items-center">
-        <div class="row">
+        <!-- <div class="row">
           <div class="column">
-            <center><p class="display-4 mx-5 text-light">Welcome to Family Ties!</p></center>
+            <center><p class="display-4 mx-5 text-light ">Welcome to Family Ties!</p></center>
             <p class="display-4 mx-5 text-light">A place to connect with family both near and far</p>
+          </div>
+        </div> -->
+      </section>
+      <section>
+        <div class="container-fluid">
+          <div class="jumbtron jumbotron-fluid">
+            <div class="container">
+              <marquee><h1 class="display-4">Welcome to Family Ties! A place to connect with family both near and far</h1></marquee>
+            </div>
           </div>
         </div>
       </section>
+     
+      
     </div>
   </body>
 </html>

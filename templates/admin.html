@@ -3,14 +3,43 @@
 {% block title %}Family Ties - Admin{% endblock %}
 
 {% block content %}
-<h1>This is the admin page</h1>
-
-<form action='/admin' method = 'POST'>
-    Event Name:<input type="text" name ="event_name"><br>
-    Event Date:<input type="text" name ="event_date"><br>
-    Event Location <input type="text" name ="event_location"><br>
-    Starting Time <input type="text" name ="start_at"><br>
-    Ending Time <input type="text" name ="end_at"><br>
-    <input type = "submit">
-</form>
+<!-------------------------------------------------- NAV BAR---------------------------------------------------------->
+    <nav class="navbar bg-light">
+        <img  class="img-thumbnail rounded mx-auto d-block" src="static/images/family.png">
+        <div class="navbar-nav container flex-row">
+            <a class="nav-item nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+            <a class="nav-item nav-link" href="{{ url_for('profile') }}">Profile</a>
+            <a class="nav-item nav-link" href="{{ url_for('calendar') }}">Calendar</a>
+            <a class="nav-item nav-link" href="{{ url_for('all_users') }}">My Family</a>
+            <a class="nav-item nav-link" href="{{ url_for('admin_create_event') }}">Admin</a>
+            <a class="nav-item nav-link" href="{{ url_for('sign_out') }}">Sign Out</a>
+        </div>
+    </nav>
+    <!-------------------------------------------------- INPUT FORM---------------------------------------------------------->
+    <section class="container-fluid d-flex justify-content-center align-items-center">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="offset-md-4 col-md-4">
+                    <center><span><p class="admin">Please fill out the form below to add a new event</p></span></center>
+                    <hr>
+                    <form action='/admin' method = 'POST'>
+                        <div class="form-group">
+                            <label for="title">Event Name:</label>
+                            <input type="text" class="form-control" name="title" placeholder="Event Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="start">Event Date:</label>
+                            <input type="date" class="form-control" name="start" placeholder="YYYY-MM-DD">
+                        </div>
+                        <div class="form-group">
+                            <label for="url">Link to access event:</label>
+                            <input type=url" class="form-control" name="url" placeholder="Link to access event">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
+                    </form>
+                        
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}

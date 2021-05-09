@@ -1,0 +1,64 @@
+body
+{
+	background: no-repeat center/cover url('../images/vintage-wallpaper.png');
+}
+
+.row
+{
+	margin-top: 80px;
+}
+a
+{
+    color: #565a5f;
+}
+
+.img-thumbnail 
+{
+    width: 250px;
+}
+
+.text-primary {
+    color: white !important;
+}
+
+.table-responsive 
+{
+    color: white;
+}
+
+.admin
+{
+    margin-bottom: 0;
+    color: white;
+    font-size: larger;
+}
+
+hr{
+    border-top: 2px solid #b6c0ca;
+}
+
+label
+{
+    color: white;
+}
+
+.btn-primary, .btn-info 
+{
+    background-color: dimgrey;
+    border-color: rgb(0 0 0 / 8%);
+}
+
+
+h3
+ {
+    color: white;
+    text-align: center;
+ }
+
+ .alert {
+    position: absolute;
+    padding: .75rem 15.25rem;
+ }
+
+
+

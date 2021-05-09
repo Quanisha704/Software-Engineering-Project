@@ -8,15 +8,15 @@
         <!-- Bootstrap CSS from getbootstrap.com -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         
+        
         <!-- My custom styles -->
-        <link rel="stylesheet" href="/static/mystyles.css">
+        <link rel="stylesheet" href="../static/css/Base.css">
 
+        <!-- Script tags from fontawesome.com -->
+        <script src="https://kit.fontawesome.com/30d306614c.js" crossorigin="anonymous"></script>
          
         <!-- jQuery script tag from code.jquery.com -->
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
-         <!-- Script tags from socket.IO -->
-         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
          
         <!-- Script tags from getbootstrap.com -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -61,9 +61,6 @@
                 {% endif %}
             {% endwith %}
         </div>
-       
-        
-        
 
         {% block content %} 
         
@@ -74,8 +71,6 @@
         {% block after_body %}{% endblock %}
 
        
-        
-      
     </body>
 </html>
 

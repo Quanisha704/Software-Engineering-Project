@@ -1,18 +1,69 @@
 {% extends "base.html" %}
 
 {% block title %}Family Ties - Dashboard{% endblock %}
-	</head>
-    {% block content %}
-		<nav>
-			<div>
-				<h1>Welcome!</h1>
-				<a href="{{ url_for('dashboard') }}"><i></i>Dashboard</a>
-                <a href="{{ url_for('profile') }}"><i></i>Profile</a>
-                <a href="{{ url_for('calendar') }}"><i></i>Calendar</a>
-				<a href="{{ url_for('admin_create_event') }}"><i></i>Admin</a>
-                <a href="{{ url_for('sign_out') }}"><i></i>Sign Out</a>
+
+{% block head %}	{% endblock %}
+{% block content %}
+		<div class="jumbotron jumbotron-fluid"> 
+			<img  class="img-thumbnail rounded mx-auto d-block" src="static/images/family.png">
+			<div class="container">  
+			<center><h5 class="display-4">Welcome to your dashboard!</h5></center>  
+		  </div>
+		  </div>
+		  <div class="container">  
+			<div class="row">
+				<div class="col-sm-6 col-lg-3">
+					<div class="card mt-3 p-4">  
+						<center><p class="card-img-top fas fa-user fa-3x" alt="Card header image"></p>  
+						<div class="card-body">  
+						  <h5 class="card-title">Profile</h5>  
+						  <span class="card-text">View your profile</span>  
+						  <a href="{{ url_for('profile') }}" class="btn btn-info">See Profile</a>  
+						</div></center>
+					</div> 
+				</div>
+				<div class="col-sm-6 col-lg-3">
+					<div class="card mt-3 p-4">  
+						<center><p class="card-img-top far fa-calendar fa-3x" alt="Card header image"></p>
+						<div class="card-body">  
+						  <h5 class="card-title">Calendar</h5>  
+						  <span class="card-text">Upcoming events</span>  
+						  <a href="{{ url_for('calendar') }}" class="btn btn-info">See Calendar</a>  
+						</div></center>
+					</div> 
+				</div>
+				<div class="col-sm-6 col-lg-3">
+					<div class="card mt-3 p-4">  
+						<center><p class="card-img-top fas fa-users fa-3x" alt="Card header image"></p>
+						<div class="card-body">  
+						  <h5 class="card-title">Family</h5>  
+						  <span class="card-text">View all users</span>  
+						  <a href="{{ url_for('all_users') }}" class="btn btn-info">See My Family</a>  
+						</div></center>
+					</div> 
+				</div>
+				<div class="col-sm-6 col-lg-3">
+					<div class="card mt-3 p-4">  
+						<center><p class="card-img-top fas fa-lock fa-3x"  alt="Card header image"></p> 
+						<div class="card-body">  
+						  <h5 class="card-title">Admin</h5>  
+						  <span class="card-text">Admin access only!</span>  
+						  <a href="{{ url_for('admin_create_event') }}" class="btn btn-info">See Admin page</a>  
+						</div></center>
+					</div> 
+				</div> 
+				
+				<div class="col-sm-6 col-lg-3">
+					<div class="card mt-3 p-4">  
+						<center><p class="card-img-top fas fa-sign-out-alt fa-3x" alt="Card header image"></p>
+						<div class="card-body">  
+						  <h5 class="card-title">Sign Out</h5>  
+						  <span class="card-text">Exit this site</span>  
+						  <a href="{{ url_for('sign_out') }}" class="btn btn-info">Sign Out</a>  
+						</div></center>
+					</div> 
+				</div>
 			</div>
-		</nav>
-		<div>
-			{% endblock %}
 		</div>
+		{% endblock %}
+		

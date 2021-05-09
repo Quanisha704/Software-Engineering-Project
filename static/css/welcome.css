@@ -37,3 +37,10 @@
     background: no-repeat center/cover url('../images/landing.jpg');
   }
 
+  
+ .alert {
+  position: absolute;
+  padding: .75rem 15.25rem;
+}
+
+   

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Family Ties - My Family{% endblock %}
+
+
+ 
+{% block content %}
+<!-------------------------------------------------- NAV BAR---------------------------------------------------------->
+<nav class="navbar bg-light">
+    <img  class="img-thumbnail rounded mx-auto d-block" src="static/images/family.png">
+    <div class="navbar-nav container flex-row">
+        <a class="nav-item nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a class="nav-item nav-link" href="{{ url_for('profile') }}">Profile</a>
+        <a class="nav-item nav-link" href="{{ url_for('calendar') }}">Calendar</a>
+        <a class="nav-item nav-link" href="{{ url_for('all_users') }}">My Family</a>
+        <a class="nav-item nav-link" href="{{ url_for('admin_create_event') }}">Admin</a>
+        <a class="nav-item nav-link" href="{{ url_for('sign_out') }}">Sign Out</a>
+    </div>
+</nav>
+<!---------------------------------------------------ALL USERS------------------------------------------------------->
+{% for user in users %}
+<div class="container">  
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="card mt-3 p-4">  
+            <center>
+                <div class="card-body">
+                  <i class="far fa-id-card fa-5x"></i>
+                  <h5 class="card-title">Name: {{user.fname}} {{user.lname}}</h5><hr>
+                  <p class="card-text"><strong>Email:</strong> {{user.email}}</p>
+                  <p class="card-text"><strong>Occupation:</strong> {{user.job}}</p>
+                  <p class="card-text"><strong>Currently Reside:</strong> {{user.current_location}}</p>
+                  <p class="card-text"><strong>Place of Birth:</strong> {{user.place_of_birth}}</p>
+                  <p class="card-text"><strong>Date of Birth:</strong> {{user.dob}}</p> 
+                  {% if user.isAdmin == True %}
+                  <p class="card-text"><strong>Role:</strong> Admin</p> 
+                  {% endif %}
+                </div>
+            </center>
+            </div> 
+            
+        </div>
+    </div>
+</div>
+
+{% endfor %}
+{% endblock %}

@@ -4,6 +4,8 @@
 
 {% block head %}
 <link rel= "stylesheet" href = "https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.css">
+ <!-- My custom styles -->
+ <link rel="stylesheet" href="../static/css/full-calendar.css">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.6.0/main.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 
@@ -22,15 +24,7 @@
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
     },
     editable: false,
-	// eventLimit: true, 
-    // eventRender: function(info) {
-    //   const tooltip = new Tooltip(info.el, {
-    //     title: info.event.extendedProps.description,
-    //     placement: 'top',
-    //     trigger: 'hover',
-    //     container: 'body'
-    //   });
-    // },
+	
 
     events:[
     {
@@ -63,15 +57,8 @@
         "title": "Zoom call meeting",
         "url": "https://zoom.us/"
     },
-],
-eventMouseEnter: function(info) {
-            var tis=info.el;
-            var popup=info.event.extendedProps.popup;
-            var tooltip = '<div>' + popup.title + '</div><div>' + popup.descri + '</div></div>';
-            var $tooltip = $(tooltip).appendTo('body');
-
-
-  }});
+]
+  });
 calendar.render();
 });
 </script>
@@ -82,13 +69,16 @@ calendar.render();
 {% endblock %}
 
 {% block content %}
-<nav>
-    <div>
-        <h1>Signed in as: {{session['fname']}}</h1>
-        <a href="{{ url_for('dashboard') }}"><i></i>Dashboard</a>
-        <a href="{{ url_for('profile') }}"><i></i>Profile</a>
-        <a href="{{ url_for('calendar') }}"><i></i>Calendar</a>
-        <a href="{{ url_for('sign_out') }}"><i></i>Sign Out</a>
+<!-------------------------------------------------- NAV BAR---------------------------------------------------------->
+<nav class="navbar bg-light">
+    <img  class="img-thumbnail rounded mx-auto d-block" src="static/images/family.png">
+    <div class="navbar-nav container flex-row">
+        <a class="nav-item nav-link" href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a class="nav-item nav-link" href="{{ url_for('profile') }}">Profile</a>
+        <a class="nav-item nav-link" href="{{ url_for('calendar') }}">Calendar</a>
+        <a class="nav-item nav-link" href="{{ url_for('all_users') }}">My Family</a>
+        <a class="nav-item nav-link" href="{{ url_for('admin_create_event') }}">Admin</a>
+        <a class="nav-item nav-link" href="{{ url_for('sign_out') }}">Sign Out</a>
     </div>
 </nav>
 <div id='calendar'></div>
