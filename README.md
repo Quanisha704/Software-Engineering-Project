@@ -1,36 +1,87 @@
-## Project Proposal
+# <center><img src="static/images/family.png" width="20%" alt="FamilyTies"></center> 
+# <center><strong>FAMILY TIES</strong></center>
 
-### Overview
 
-An app where users are able to connect with their family.  
+## About Me
+Before studying at Hackbright Academy, Quanisha has 10+ years of working experience in food service, sales, healthcare and IT industries combined. Quanisha has always had a love for technology and learning new things. In 2011, she received her Bachelor of Arts (B.A.) degree in Computer Science from University of North Carolina at Charlotte. Recently in 2020, she received her CompTIA A+ and Google IT certifications.
 
-### Technologies required (besides typical Hackbright tech stack)
 
-- Calendar API (still researching to see which one)
-- Dropbox API  (Still researching to see if I'm going to use this)
 
-### Data
-- User email, password 
-- Events (event name, location and time if any, type of event)
-- Profile (name, contact information, current location )
-- There will be much more data stored 
+## Contents
+* [Tech Stack](#tech-stack)
+* [Features](#features)
+* [Future State](#future)
+* [Installation](#installation)
 
-### Roadmap
 
-#### MVP
+## <a name="tech-stack"></a>Technologies
+* Python
+* Flask
+* Jinja2
+* PostgresQL
+* SQLAlchemy ORM
+* Javascript
+* HTML
+* CSS
+* Bootstrap
+* Cloudinary
+* FullCalendar
 
-- Users will be able to create to signup, login and create a profile 
-- Users will be able to view upcoming events in the calendar
-- Users will be able to share items (pictures, links, documents)
-- Users will be able request event to be added to calendar via Admin
+## <a name="features"></a>Features
 
-#### 2.0
+## <a name="future"></a>Future State
 
-- Make easy UI 
+## <a name="installation"></a>Installation
+To run Family Ties on your own machine:
 
-#### 3.0
+Clone this repo:
+```
+https://github.com/Quanisha704/Software-Engineering-Project.git
+```
 
-- React???
-- Video/ Chat feature
+Create and activate a virtual environment inside your Family Ties directory:
+```
+virtualenv env (Mac OS)
+virtualenv env --always-copy (Windows OS)
+source env/bin/activate
+```
 
-### Notes
+Install the dependencies:
+```
+pip3 install -r requirements.txt
+```
+
+Sign up to use the [Google Calendar API](https://developers.google.com/calendar/)
+
+Save your API keys in a file called <kbd>secrets.sh</kbd> using this format:
+
+```
+export GOOGLE_API_KEY="YOUR_KEY_HERE"
+export GOOGLE_CLIENT_ID="YOUR_ID_HERE"
+```
+
+Set up and download your Google OAuth 2.0 client IDs, and save to a file called <kbd>client_secrets.json</kbd>.
+
+Source your keys from your secrets.sh file into your virtual environment:
+
+```
+source secrets.sh
+```
+
+Set up the database:
+
+```
+createdb jobs
+python3.6 model.py
+python3.6 seed.py
+```
+
+Run the app:
+
+```
+python3.6 server.py
+```
+
+You can now navigate to 'localhost:5000/' to access JobTracker.
+
+
