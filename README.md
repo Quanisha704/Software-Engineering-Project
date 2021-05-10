@@ -3,7 +3,7 @@
 
 
 ## About Me
-Before studying at Hackbright Academy, Quanisha has 10+ years of working experience in food service, sales, healthcare and IT industries combined. Quanisha has always had a love for technology and learning new things. In 2011, she received her Bachelor of Arts (B.A.) degree in Computer Science from University of North Carolina at Charlotte. Recently in 2020, she received her CompTIA A+ and Google IT certifications.
+Before studying at Hackbright Academy, Quanisha has 10+ years of working experience in food service, sales, healthcare and IT industries combined. Quanisha has always had a love for technology and learning new things. In 2011, she received her Bachelor of Arts (B.A.) degree in Computer Science from University of North Carolina at Charlotte. Recently in 2020, she received her CompTIA A+ and Google IT certifications. Currently, while studying at Hackbright she is also studying to become Network+ certified. She hopes that she can continue to grow and have a wonderful career in technology.
 
 
 
@@ -12,6 +12,7 @@ Before studying at Hackbright Academy, Quanisha has 10+ years of working experie
 * [Features](#features)
 * [Future State](#future)
 * [Installation](#installation)
+
 
 
 ## <a name="tech-stack"></a>Technologies
@@ -27,9 +28,41 @@ Before studying at Hackbright Academy, Quanisha has 10+ years of working experie
 * Cloudinary
 * FullCalendar
 
+
 ## <a name="features"></a>Features
 
+#### Landing Page
+Users have the option to register or login from the bootstrap built landing page.
+
+#### Register and Sign In pages
+Both pages are built using Jinja templating and forms to gather the requested information from the user. The information is then stored in sessions and used to check through validation using SQLAlchemy ORM database queries. 
+
+#### User Dashboard
+Once signed in, the user page displays links for navigation to the user's profile, calendar, my family and admin page(only can access if they have permission) and allows users to sign out. All which were built with Jinja templates created by using bootstrap cards.
+
+#### User Profile
+The user profile page is also built with Jinja templating and bootstrap. This page provides details about the user that was submitted through the registration process through the use of sessions. The user can also update their profile photo by utilizing the Cloudinary API feature to upload photos to the cloud.
+ 
+#### Calendar Page
+The calendar page is built by using Jinja templating and bootstrap. It's functionality solely comes from the FullCalendar API which uses javascript to create and generate the calendar and displays the events by accessing a JSON file.
+
+
+#### My Family Page
+This page displays all users and their information by querying the database and built by Jinja templating and bootstrap cards. 
+
+
+#### Admin Page
+Only admins can access this page. Users are verified if admin through a SQLAlchemy query. The admin page is also built with Jinja templating and form to gather the requested information to create an event. Once the information is submitted, it is checked by SQLAlchemy queries to see if the event exists or not. If the event doesn't exist, then it will be added to the existing database and displayed on the calendar.
+
+
 ## <a name="future"></a>Future State
+I would love to implement the following features in Family Ties for future sprints:
+* Password hashing
+* Users to be able to edit/update profile
+* More advanced admin features (Ex: capability to send email messages to users)
+* Video/Chat feature
+* Displaying users that are active when logged in
+
 
 ## <a name="installation"></a>Installation
 To run Family Ties on your own machine:
@@ -51,16 +84,18 @@ Install the dependencies:
 pip3 install -r requirements.txt
 ```
 
-Sign up to use the [Google Calendar API](https://developers.google.com/calendar/)
+Sign up to use the [CLOUDINARY API](https://wwww.cloudinary.com)
 
 Save your API keys in a file called <kbd>secrets.sh</kbd> using this format:
 
 ```
-export GOOGLE_API_KEY="YOUR_KEY_HERE"
-export GOOGLE_CLIENT_ID="YOUR_ID_HERE"
+export CLOUDINARY_KEY="YOUR_API_KEY"
+export CLOUDINARY_SECRET="YOUR_API_SECRET"
 ```
 
-Set up and download your Google OAuth 2.0 client IDs, and save to a file called <kbd>client_secrets.json</kbd>.
+Add secrets.sh to .gitignore file
+
+
 
 Source your keys from your secrets.sh file into your virtual environment:
 
@@ -71,17 +106,17 @@ source secrets.sh
 Set up the database:
 
 ```
-createdb jobs
-python3.6 model.py
-python3.6 seed.py
+createdb family
+python3 model.py
+python3 seed.py
 ```
 
 Run the app:
 
 ```
-python3.6 server.py
+python3 server.py
 ```
 
-You can now navigate to 'localhost:5000/' to access JobTracker.
+You can now navigate to 'localhost:5000/' to access Family Ties.
 
 
