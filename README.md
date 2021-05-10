@@ -22,6 +22,7 @@ Before studying at Hackbright Academy, Quanisha has 10+ years of working experie
 * PostgresQL
 * SQLAlchemy ORM
 * Javascript
+* JQuery
 * HTML
 * CSS
 * Bootstrap
