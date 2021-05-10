@@ -33,26 +33,36 @@ Before studying at Hackbright Academy, Quanisha has 10+ years of working experie
 
 #### Landing Page
 Users have the option to register or login from the bootstrap built landing page.
+# <img src="static/images/Landing-Page.png" width="75%" alt="Landing Page">
+
 
 #### Register and Sign In pages
 Both pages are built using Jinja templating and forms to gather the requested information from the user. The information is then stored in sessions and used to check through validation using SQLAlchemy ORM database queries. 
+# <img src="static/images/Register.jpg" width="75%" alt="Register Page">
+# <img src="static/images/Sign-In.jpg" width="75%" alt="Sign In Page">
 
 #### User Dashboard
 Once signed in, the user page displays links for navigation to the user's profile, calendar, my family and admin page(only can access if they have permission) and allows users to sign out. All which were built with Jinja templates created by using bootstrap cards.
+# <img src="static/images/Dashboard.jpg" width="75%" alt="Dashboard Page">
 
 #### User Profile
 The user profile page is also built with Jinja templating and bootstrap. This page provides details about the user that was submitted through the registration process through the use of sessions. The user can also update their profile photo by utilizing the Cloudinary API feature to upload photos to the cloud.
+# <img src="static/images/Profile.jpg" width="75%" alt="User Profile Page">
+
  
 #### Calendar Page
 The calendar page is built by using Jinja templating and bootstrap. It's functionality solely comes from the FullCalendar API which uses javascript to create and generate the calendar and displays the events by accessing a JSON file.
+# ![alt text]( "Calendar")
 
 
 #### My Family Page
 This page displays all users and their information by querying the database and built by Jinja templating and bootstrap cards. 
+#  <img src="static/images/All-Users.jpg" width="75%" alt="All Users Page">
 
 
 #### Admin Page
 Only admins can access this page. Users are verified if admin through a SQLAlchemy query. The admin page is also built with Jinja templating and form to gather the requested information to create an event. Once the information is submitted, it is checked by SQLAlchemy queries to see if the event exists or not. If the event doesn't exist, then it will be added to the existing database and displayed on the calendar.
+# <img src="static/images/Admin.jpg" width="75%" alt="Admin Page">
 
 
 ## <a name="future"></a>Future State
