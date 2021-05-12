@@ -53,7 +53,7 @@ The user profile page is also built with Jinja templating and bootstrap. This pa
  
 #### Calendar Page
 The calendar page is built by using Jinja templating and bootstrap. It's functionality solely comes from the FullCalendar API which uses javascript to create and generate the calendar and displays the events by accessing a JSON file.
-# <img src="static/images/Calendar.jpg" width="75%" alt="Calendar Page">
+# <img src="static/images/ezgif.com-gif-maker.gif" width="75%" alt="Calendar Page">
 
 
 #### My Family Page
