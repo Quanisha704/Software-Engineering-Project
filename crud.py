@@ -4,11 +4,11 @@ from faker import Faker
 
 ################################ CRUD Functions for User table ############################
 
-def create_user(email, password, fname, lname, job, current_location, place_of_birth, dob, profile_url, isAdmin):
+def create_user(email, password, fname, lname, job, current_location, place_of_birth, dob, isAdmin):
     """Create and return a new user"""
     
     user = User(email=email, password = password, fname=fname, lname=lname, job=job, 
-                current_location = current_location, place_of_birth = place_of_birth, dob = dob, profile_url = profile_url, isAdmin = isAdmin )
+                current_location = current_location, place_of_birth = place_of_birth, dob = dob, isAdmin = isAdmin )
     
     db.session.add(user)
     db.session.commit()
@@ -87,10 +87,4 @@ def get_event_by_start_date(start):
 if __name__ == '__main__':
     from server import app
     connect_to_db(app)
-
-
-
-
-
-
 

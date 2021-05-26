@@ -1,7 +1,7 @@
 """Server for Family Ties Flask app."""
 
 from flask import (Flask, request, render_template, redirect, session, flash, url_for, jsonify)
-from flask_debugtoolbar import DebugToolbarExtension
+#from flask_debugtoolbar import DebugToolbarExtension
 from model import connect_to_db
 from sqlalchemy import *
 from jinja2 import StrictUndefined
@@ -9,6 +9,7 @@ import cloudinary.uploader
 import json
 import crud
 import os
+from datetime import datetime
 
 
 # "__name__" is a special Python variable for the name of the current module
@@ -22,7 +23,6 @@ app.secret_key = "FAMILY"
 
 CLOUDINARY_KEY = os.environ['CLOUDINARY_KEY']
 CLOUDINARY_KEY_SECRET = os.environ['CLOUDINARY_SECRET']
-
 
 ################################### LANDING PAGE, REGISTER, SIGN IN, SIGN OUT ##############################
 @app.route('/')
@@ -53,17 +53,17 @@ def sign_in_post():
     user = crud.get_user_by_email(email) 
     
     #checks to see if user exist or not
-    if not user:
-        flash('Account does not exist! Please try again or register for a new account.', 'error')
-        return redirect('/')
+    # if not user:
+    #     flash('Account does not exist! Please try again or register for a new account.', 'error')
+    #     return redirect('/')
     
-    #checks to see if user email or password matches
-    if user.email != email or user.password != password:
-        flash('Incorrect email or password! Please try again.', 'error')
-        return redirect('/')
+    # #checks to see if user email or password matches
+    # if user.email != email or user.password != password:
+    #     flash('Incorrect email or password! Please try again.', 'error')
+    #     return redirect('/')
     
     #if user exists   
-    if user:
+    if user is not None:
         #adds users information to session
         session['user_id'] = user.user_id
         session['email'] = email
@@ -78,6 +78,9 @@ def sign_in_post():
         
         flash('Sign in successful!', 'success')
         return redirect('/dashboard')
+    else:
+        flash('Incorrect email or password! Please try again.', 'error')
+        return redirect('/')
 
 
 @app.route('/sign_out')
@@ -135,7 +138,7 @@ def register_post():
         return redirect('/register')
     else:
         #creates a new user and adds the new user to the database
-        crud.create_user(email, password, fname, lname, job, current_location, place__of_birth, isAdmin)
+        crud.create_user(email, password, fname, lname, job, current_location, place_of_birth, dob, isAdmin)
         flash('Registration is successful. Please sign in.', 'success')
         return redirect('/')
          
@@ -243,6 +246,23 @@ def calendar():
         return redirect('/sign_in')
     else:
         return render_template('calendar.html')
+
+    
+@app.route('/all_events')
+def all_events():
+    events = crud.all_events()
+
+    events_to_jsonify = []
+
+    for event in events:
+        events_to_jsonify.append({
+          "start": event.start.strftime("%Y-%m-%d"), 
+          "title": event.title,
+          "url": event.url,
+          "popup":{"title": "this is it", "descri": "this is des",}
+        })
+    return jsonify(events_to_jsonify)
+
     
 
 @app.route('/all_users')

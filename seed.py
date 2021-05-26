@@ -38,7 +38,7 @@ for i in range(10):
     isAdmin = fake.boolean(chance_of_getting_true=10)
    
 
-    db_user = crud.create_user(email, password, fname, lname, job, current_location, place_of_birth, dob, profile_url, isAdmin)
+    db_user = crud.create_user(email, password, fname, lname, job, current_location, place_of_birth, dob, isAdmin)
     users.append(db_user)
 
 #Create user event from the user event table

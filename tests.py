@@ -34,8 +34,8 @@ class FlaskTestsBasic(TestCase):
         """Test sign in page."""
 
         result = self.client.post("/sign_in",
-                                  data={"email": "brandonryan@bird-anderson.com", "password": "(5KZlu+s%j"}, follow_redirects=True)
-        self.assertIn(b"Sign in successful!", result.data)
+                                  data={"email": "jeffrey62@alexander.net", "password": "4aVD2fKd*2"}, follow_redirects=True)
+        self.assertIn(b"See Calendar", result.data)
         
     def test_register(self):
         """Testing register page"""
@@ -56,7 +56,7 @@ class FlaskTestsLoggedIn(TestCase):
 
         with self.client as c:
             with c.session_transaction() as sess:
-                sess['email'] = "brandonryan@bird-anderson.com"
+                sess['email'] = "jeffrey62@alexander.net"
 
     def test_dashboard_page(self):
         """Test dashboard page."""
@@ -92,13 +92,13 @@ class FlaskTestsDatabase(TestCase):
         app.config['TESTING'] = True
 
         # Connect to test database
-        connect_to_db(app, "postgresql:///testdb")
+        connect_to_db(app, "postgresql:///test_db")
 
         # Create tables and add sample data
         db.create_all()
         
         self.user = crud.create_user(email='maryc123@yahoo.com', password = 'K9#n*Hs73', fname = 'Mary', lname = 'Crews', job = 'Night Auditor',
-                                     current_location = 'Wisconsin',  place_of_birth = 'Iowa', dob ='1977-11-03', profile_url = 'https://doggiecar.com/211/381', isAdmin =False)
+                                     current_location = 'Florida',  place_of_birth = 'Iowa', dob ='1977-11-03', isAdmin =False)
 
     def tearDown(self):
         """Do at end of every test."""
@@ -135,4 +135,3 @@ if __name__ == "__main__":
     import unittest
 
     unittest.main()
-
